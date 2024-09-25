@@ -1,7 +1,10 @@
 ---
 import Layout from '../layouts/MainLayout.astro';
 import Card from '../components/Card.astro';
-import Button from '../components/Button.astro';
+import Button from '../components/common/Button.astro';
+import Input from '../components/form/Input.astro';
+import Radio from '../components/form/Radio.astro';
+import Number from '../components/form/Number.astro';
 ---
 
 <Layout title="Welcome to Astro.">
@@ -10,5 +13,8 @@ import Button from '../components/Button.astro';
     Astro is a new kind of static site builder that delivers lightning-fast
     performance with a modern developer experience.
   </p>
-  <Button style="dark"> this is button </Button>
+  <Button variant="bordered" endContent label="test" />
+  <Input />
+  <Radio />
+  <Number />
 </Layout>
