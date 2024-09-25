@@ -12,7 +12,9 @@
   "dependencies": {
     "@fontsource/manrope": "^5.1.0",
     "astro": "^4.15.8",
-    "jquery": "^3.7.1",
     "sass": "^1.79.3"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.30"
   }
 }

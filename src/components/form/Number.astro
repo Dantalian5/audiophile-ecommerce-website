@@ -1,11 +1,18 @@
 ---
-const {} = Astro.props;
+const { id } = Astro.props;
 ---
 
-<div class="number">
-  <button id="minus" type="button" class="number__btn">-</button>
-  <input class="number__input" type="number" value="1" min="1" step="1" />
-  <button id="plus" type="button" class="number__btn">+</button>
+<div id="id" class="number">
+  <button type="button" class="number__btn minus-button">-</button>
+  <input
+    id="inputNumber"
+    class="number__input"
+    type="number"
+    value="1"
+    min="1"
+    step="1"
+  />
+  <button type="button" class="number__btn plus-button">+</button>
 </div>
 <style lang="scss">
   .number {
@@ -61,11 +68,5 @@ const {} = Astro.props;
   }
 </style>
 <script>
-  $('button#minus').on('click', function () {
-    const input = $(this).next();
-    const value = parseInt(input.val());
-    if (value > 1) {
-      input.val(value - 1);
-    }
-  });
+  const minusNumber = document.querySelectorAll('minusNumber');
 </script>
