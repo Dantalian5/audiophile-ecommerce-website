@@ -66,6 +66,12 @@ select {
   font-family: inherit;
   font-size: inherit;
 }
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: none;
+  background: none;
+}
 
 /* Make sure textareas without a rows attribute are not tiny */
 textarea:not([rows]) {

@@ -68,5 +68,16 @@ const { id } = Astro.props;
   }
 </style>
 <script>
-  const minusNumber = document.querySelectorAll('minusNumber');
+  document.querySelectorAll('.minus-button').forEach((button) => {
+    button.addEventListener('click', () => {
+      const input = button.nextElementSibling as HTMLInputElement;
+      input.stepDown();
+    });
+  });
+  document.querySelectorAll('.plus-button').forEach((button) => {
+    button.addEventListener('click', () => {
+      const input = button.previousElementSibling as HTMLInputElement;
+      input.stepUp();
+    });
+  });
 </script>
