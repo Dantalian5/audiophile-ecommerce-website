@@ -1,0 +1,190 @@
+---
+import Link from './common/Link.astro';
+---
+
+<section class="show">
+  <div class="zx9">
+    <div class="zx9__img">
+      <img
+        class=""
+        src="public/assets/home/mobile/image-speaker-zx9.png"
+        alt="a speaker image"
+      />
+    </div>
+    <h3 class="zx9__title">ZX9 <br /> SPEAKER</h3>
+    <p class="zx9__body">
+      Upgrade to premium speakers that are phenomenally built to deliver truly
+      remarkable sound.
+    </p>
+    <div class="zx9__btn">
+      <Link variant="flat" label="See Product" />
+    </div>
+  </div>
+  <div class="zx7">
+    <h3 class="zx7__title">ZX7 SPEAKER</h3>
+    <div class="zx7__btn">
+      <Link variant="bordered" label="See Product" />
+    </div>
+  </div>
+  <div class="yx1">
+    <div class="yx1__box yx1__box--1"></div>
+    <div class="yx1__box">
+      <h3 class="zx7__title">ZX7 SPEAKER</h3>
+      <div class="zx7__btn">
+        <Link variant="bordered" label="See Product" />
+      </div>
+    </div>
+  </div>
+</section>
+<style lang="scss">
+  .show {
+    background-color: transparent;
+    padding: 2.5rem 1.5rem;
+    margin-bottom: 2.5rem;
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .zx9 {
+    width: 100%;
+    border-radius: 8px;
+    background-color: var(--accent);
+    padding-block: 3.4375rem;
+    padding-inline: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    overflow: hidden;
+    &__img {
+      width: 10.9375rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+      & img {
+        width: 100%;
+        position: relative;
+        z-index: 5;
+      }
+      &::before {
+        z-index: 1;
+        position: absolute;
+        content: '';
+        background-image: url('/public/assets/home/desktop/pattern-circles.svg');
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -40%);
+        width: 350%;
+        height: 350%;
+      }
+    }
+    &__title {
+      color: var(--foreground-light);
+      text-align: center;
+      font-size: 2.25rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1.11;
+      letter-spacing: 0.0804rem;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 5;
+    }
+    &__body {
+      color: var(--foreground-light);
+      text-align: center;
+      font-size: 0.9375rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1.66;
+      opacity: 0.75;
+      position: relative;
+      z-index: 5;
+    }
+    &__btn {
+      position: relative;
+      z-index: 5;
+    }
+  }
+  .zx7 {
+    width: 100%;
+    border-radius: 8px;
+    padding-block: 6.3125rem;
+    padding-inline: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
+    overflow: hidden;
+    background-image: url('public/assets/home/mobile/image-speaker-zx7.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    &__title {
+      color: var(--foreground-dark);
+      text-align: center;
+      font-size: 1.75rem;
+      font-style: normal;
+      font-weight: 700;
+      text-transform: uppercase;
+      position: relative;
+      line-height: normal;
+      letter-spacing: 0.125rem;
+      z-index: 5;
+    }
+    &__btn {
+      position: relative;
+      z-index: 5;
+    }
+  }
+  .yx1 {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+    &__box {
+      flex: 1 1 auto;
+      border-radius: 0.5rem;
+      padding-block: 2.625rem;
+      padding-inline: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 2rem;
+      overflow: hidden;
+      background-color: var(--secondary-ghost);
+      min-height: 12.5rem;
+      &--1 {
+        background-image: url('public/assets/home/mobile/image-earphones-yx1.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+    }
+    &__title {
+      color: var(--foreground-dark);
+      text-align: center;
+      font-size: 1.75rem;
+      font-style: normal;
+      font-weight: 700;
+      text-transform: uppercase;
+      position: relative;
+      line-height: normal;
+      letter-spacing: 0.125rem;
+      z-index: 5;
+    }
+    &__btn {
+      position: relative;
+      z-index: 5;
+    }
+  }
+</style>
