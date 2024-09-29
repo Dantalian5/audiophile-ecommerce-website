@@ -7,7 +7,7 @@ import Button from './common/Button.astro';
   <Navbar />
   <div class="hero">
     <p class="hero__new">NEW PRODUCT</p>
-    <h1 class="hero__title">XX99 Mark II HeadphoneS</h1>
+    <h1 class="hero__title">XX99 Mark II <br /> Headphones</h1>
     <p class="hero__body">
       Experience natural, lifelike audio and exceptional build quality made for
       the passionate music enthusiast.
@@ -41,7 +41,7 @@ import Button from './common/Button.astro';
       font-size: 0.875rem;
       font-weight: 400;
       line-height: normal;
-      letter-spacing: 10px;
+      letter-spacing: 0.625rem;
       text-transform: uppercase;
       opacity: 0.5;
 
@@ -61,10 +61,31 @@ import Button from './common/Button.astro';
       line-height: 1.5625rem; /* 166.667% */
       opacity: 0.75;
       margin-bottom: 1.75rem;
+      max-width: 21.875rem;
+      margin-inline: auto;
     }
     &__btn {
       margin-inline: auto;
       width: fit-content;
+    }
+  }
+  @media screen and (min-width: 43.75rem) {
+    .header {
+      min-height: 45.625rem;
+      background-image: url('/assets/home/tablet/image-header.jpg');
+      margin-bottom: 3.5rem;
+    }
+    .hero {
+      &__new {
+        margin-bottom: 1.5rem;
+      }
+      &__title {
+        margin-bottom: 1.5rem;
+        font-size: 3.5rem;
+      }
+      &__body {
+        margin-bottom: 2.5rem;
+      }
     }
   }
 </style>
