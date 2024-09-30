@@ -5,11 +5,21 @@ import Link from './common/Link.astro';
 <section class="show">
   <div class="zx9">
     <div class="zx9__img">
-      <img
-        class=""
-        src="public/assets/home/mobile/image-speaker-zx9.png"
-        alt="a speaker image"
-      />
+      <picture>
+        <source
+          srcset="public/assets/home/desktop/image-speaker-zx9.png"
+          media="(min-width: 1000px)"
+        />
+        <source
+          srcset="public/assets/home/tablet/image-speaker-zx9.png"
+          media="(min-width: 43.75rem)"
+        />
+        <img
+          class=""
+          src="public/assets/home/mobile/image-speaker-zx9.png"
+          alt="a speaker image"
+        />
+      </picture>
     </div>
     <h3 class="zx9__title">ZX9 <br /> SPEAKER</h3>
     <p class="zx9__body">
@@ -105,6 +115,8 @@ import Link from './common/Link.astro';
       opacity: 0.75;
       position: relative;
       z-index: 5;
+      max-width: 21.875rem;
+      margin-inline: auto;
     }
     &__btn {
       position: relative;
@@ -185,6 +197,36 @@ import Link from './common/Link.astro';
     &__btn {
       position: relative;
       z-index: 5;
+    }
+  }
+  @media screen and (min-width: 43.75rem) {
+    .show {
+      padding-inline: 2.5rem;
+    }
+    .zx9 {
+      padding-block: 3.25rem 4rem;
+      &__img {
+        width: 12.375rem;
+        margin-bottom: 2.5rem;
+        &::before {
+          width: 480%;
+          height: 480%;
+        }
+      }
+      &__title {
+        font-size: 3.5rem;
+        line-height: 1.03;
+        letter-spacing: 0.125rem;
+      }
+      &__btn {
+        margin-top: 1rem;
+      }
+    }
+    .zx7 {
+      background-image: url('public/assets/home/tablet/image-speaker-zx7.jpg');
+      padding-inline: 3.9063rem;
+    }
+    .yx1 {
     }
   }
 </style>
