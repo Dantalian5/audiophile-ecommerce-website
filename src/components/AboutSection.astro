@@ -3,11 +3,18 @@ import Link from './common/Link.astro';
 ---
 
 <section class="about">
-  <img
-    class="about__img"
-    src="public/assets/shared/mobile/image-best-gear.jpg"
-    alt="a man with earphones"
-  />
+  <picture>
+    <source
+      srcset="public/assets/shared/tablet/image-best-gear.jpg"
+      media="(min-width: 700px)"
+    />
+    <img
+      class="about__img"
+      src="public/assets/shared/mobile/image-best-gear.jpg"
+      alt="a man with earphones"
+    />
+  </picture>
+
   <h3 class="about__title">Bringing you the <span>best</span> audio gear</h3>
   <p class="about__body">
     Located at the heart of New York City, Audiophile is the premier store for
@@ -21,35 +28,53 @@ import Link from './common/Link.astro';
 <style lang="scss">
   .about {
     background-color: transparent;
-    padding: 2.5rem 1.5rem;
-    margin-bottom: 2.5rem;
+    padding-inline: 1.5rem;
+    margin-bottom: 7.5rem;
     &__img {
       width: 100%;
-      border-radius: 0.5rem;
-      margin-bottom: 2.5rem;
+      border-radius: 8px;
+      margin-bottom: 40px;
     }
     &__title {
       color: var(--foreground-dark);
       text-align: center;
-      font-size: 1.75rem;
+      font-size: 28px;
       font-style: normal;
       font-weight: 700;
       line-height: normal;
-      letter-spacing: 0.0625rem;
+      letter-spacing: 1px;
       text-transform: uppercase;
       margin-bottom: 2rem;
+      max-width: 35.8125rem;
+      margin-inline: auto;
       & span {
         color: var(--accent);
       }
     }
     &__body {
-      color: #000;
+      color: var(--foreground-dark);
       text-align: center;
-      font-size: 0.9375rem;
+      font-size: 15px;
       font-style: normal;
       font-weight: 400;
       line-height: 1.66; /* 166.667% */
       opacity: 0.5;
+      max-width: 35.8125rem;
+      margin-inline: auto;
+    }
+  }
+  @media screen and (min-width: 700px) {
+    .about {
+      padding-inline: 2.5rem;
+      margin-bottom: 6rem;
+      &__img {
+        margin-bottom: 4rem;
+      }
+      &__title {
+        font-size: 2.5rem;
+        line-height: 1.1; /* 110% */
+        letter-spacing: 0.0893rem;
+      }
     }
   }
 </style>

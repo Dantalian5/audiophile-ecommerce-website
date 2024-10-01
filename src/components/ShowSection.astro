@@ -49,8 +49,8 @@ import Link from './common/Link.astro';
 <style lang="scss">
   .show {
     background-color: transparent;
-    padding: 2.5rem 1.5rem;
-    margin-bottom: 2.5rem;
+    padding-inline: 1.5rem;
+    margin-bottom: 7.5rem;
     display: flex;
     gap: 1.5rem;
     width: 100%;
@@ -157,13 +157,14 @@ import Link from './common/Link.astro';
   }
   .yx1 {
     display: flex;
-    gap: 1.5rem;
+    flex-wrap: wrap;
+    row-gap: 1.5rem;
+    column-gap: 0.625rem;
     width: 100%;
-    flex-direction: column;
     align-items: stretch;
     justify-content: stretch;
     &__box {
-      flex: 1 1 auto;
+      flex: 1 1 18.75rem;
       border-radius: 0.5rem;
       padding-block: 2.625rem;
       padding-inline: 1.5rem;
@@ -202,6 +203,8 @@ import Link from './common/Link.astro';
   @media screen and (min-width: 43.75rem) {
     .show {
       padding-inline: 2.5rem;
+      margin-bottom: 6rem;
+      gap: 2rem;
     }
     .zx9 {
       padding-block: 3.25rem 4rem;
@@ -227,6 +230,13 @@ import Link from './common/Link.astro';
       padding-inline: 3.9063rem;
     }
     .yx1 {
+      &__box {
+        padding-block: 6.3125rem;
+        padding-inline: 2.5rem;
+        &--1 {
+          background-image: url('public/assets/home/tablet/image-earphones-yx1.jpg');
+        }
+      }
     }
   }
 </style>
