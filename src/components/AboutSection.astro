@@ -5,6 +5,10 @@ import Link from './common/Link.astro';
 <section class="about">
   <picture>
     <source
+      srcset="public/assets/shared/desktop/image-best-gear.jpg"
+      media="(min-width: 1000px)"
+    />
+    <source
       srcset="public/assets/shared/tablet/image-best-gear.jpg"
       media="(min-width: 700px)"
     />
@@ -14,35 +18,45 @@ import Link from './common/Link.astro';
       alt="a man with earphones"
     />
   </picture>
-
-  <h3 class="about__title">Bringing you the <span>best</span> audio gear</h3>
-  <p class="about__body">
-    Located at the heart of New York City, Audiophile is the premier store for
-    high end headphones, earphones, speakers, and audio accessories. We have a
-    large showroom and luxury demonstration rooms available for you to browse
-    and experience a wide range of our products. Stop by our store to meet some
-    of the fantastic people who make Audiophile the best place to buy your
-    portable audio equipment.
-  </p>
+  <div class="about__info">
+    <h3 class="about__title">Bringing you the <span>best</span> audio gear</h3>
+    <p class="about__body">
+      Located at the heart of New York City, Audiophile is the premier store for
+      high end headphones, earphones, speakers, and audio accessories. We have a
+      large showroom and luxury demonstration rooms available for you to browse
+      and experience a wide range of our products. Stop by our store to meet
+      some of the fantastic people who make Audiophile the best place to buy
+      your portable audio equipment.
+    </p>
+  </div>
 </section>
 <style lang="scss">
   .about {
     background-color: transparent;
     padding-inline: 1.5rem;
     margin-bottom: 7.5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    column-gap: 7.8125rem;
+    row-gap: 2.5rem;
     &__img {
       width: 100%;
       border-radius: 8px;
-      margin-bottom: 40px;
+      flex: 1 1 33.75rem;
+    }
+    &__info {
+      flex: 1 1 27.8125rem;
     }
     &__title {
       color: var(--foreground-dark);
       text-align: center;
-      font-size: 28px;
+      font-size: 1.75rem;
       font-style: normal;
       font-weight: 700;
       line-height: normal;
-      letter-spacing: 1px;
+      letter-spacing: 0.0625rem;
       text-transform: uppercase;
       margin-bottom: 2rem;
       max-width: 35.8125rem;
@@ -54,7 +68,7 @@ import Link from './common/Link.astro';
     &__body {
       color: var(--foreground-dark);
       text-align: center;
-      font-size: 15px;
+      font-size: 0.9375rem;
       font-style: normal;
       font-weight: 400;
       line-height: 1.66; /* 166.667% */
@@ -63,17 +77,28 @@ import Link from './common/Link.astro';
       margin-inline: auto;
     }
   }
-  @media screen and (min-width: 700px) {
+  @media screen and (min-width: 43.75rem) {
     .about {
       padding-inline: 2.5rem;
       margin-bottom: 6rem;
-      &__img {
-        margin-bottom: 4rem;
-      }
+      row-gap: 4rem;
       &__title {
         font-size: 2.5rem;
-        line-height: 1.1; /* 110% */
+        line-height: 1.1;
         letter-spacing: 0.0893rem;
+      }
+    }
+  }
+  @media screen and (min-width: 62.5rem) {
+    .about {
+      padding-inline: 10.3125rem;
+      margin-bottom: 12.5rem;
+      flex-direction: row-reverse;
+      &__title {
+        text-align: left;
+      }
+      &__body {
+        text-align: left;
       }
     }
   }
