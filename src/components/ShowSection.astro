@@ -21,13 +21,15 @@ import Link from './common/Link.astro';
         />
       </picture>
     </div>
-    <h3 class="zx9__title">ZX9 <br /> SPEAKER</h3>
-    <p class="zx9__body">
-      Upgrade to premium speakers that are phenomenally built to deliver truly
-      remarkable sound.
-    </p>
-    <div class="zx9__btn">
-      <Link variant="flat" label="See Product" />
+    <div class="zx9__info">
+      <h3 class="zx9__title">ZX9 <br /> SPEAKER</h3>
+      <p class="zx9__body">
+        Upgrade to premium speakers that are phenomenally built to deliver truly
+        remarkable sound.
+      </p>
+      <div class="zx9__btn">
+        <Link variant="flat" label="See Product" />
+      </div>
     </div>
   </div>
   <div class="zx7">
@@ -68,12 +70,11 @@ import Link from './common/Link.astro';
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 2rem;
     overflow: hidden;
     &__img {
       width: 10.9375rem;
       position: relative;
-      margin-bottom: 0.5rem;
       & img {
         width: 100%;
         position: relative;
@@ -104,6 +105,7 @@ import Link from './common/Link.astro';
       text-transform: uppercase;
       position: relative;
       z-index: 5;
+      margin-bottom: 1.5rem;
     }
     &__body {
       color: var(--foreground-light);
@@ -117,10 +119,13 @@ import Link from './common/Link.astro';
       z-index: 5;
       max-width: 21.875rem;
       margin-inline: auto;
+      margin-bottom: 1.5rem;
     }
     &__btn {
       position: relative;
       z-index: 5;
+      width: fit-content;
+      margin-inline: auto;
     }
   }
   .zx7 {
@@ -208,9 +213,9 @@ import Link from './common/Link.astro';
     }
     .zx9 {
       padding-block: 3.25rem 4rem;
+      gap: 4rem;
       &__img {
         width: 12.375rem;
-        margin-bottom: 2.5rem;
         &::before {
           width: 480%;
           height: 480%;
@@ -221,8 +226,8 @@ import Link from './common/Link.astro';
         line-height: 1.03;
         letter-spacing: 0.125rem;
       }
-      &__btn {
-        margin-top: 1rem;
+      &__body {
+        margin-bottom: 2.5rem;
       }
     }
     .zx7 {
@@ -235,6 +240,52 @@ import Link from './common/Link.astro';
         padding-inline: 2.5rem;
         &--1 {
           background-image: url('public/assets/home/tablet/image-earphones-yx1.jpg');
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 62.5rem) {
+    .show {
+      padding-inline: 10.3125rem;
+      margin-bottom: 12.5rem;
+      gap: 3rem;
+    }
+    .zx9 {
+      flex-direction: row;
+      padding-block: 8.3125rem 7.75rem;
+      padding-inline: 5.9375rem;
+      justify-content: space-between;
+      &__img {
+        align-self: flex-end;
+        position: relative;
+        scale: 2;
+        left: 15%;
+        transform: translateY(3%);
+        &::before {
+          width: 240%;
+          height: 240%;
+          top: 70%;
+        }
+      }
+      &__title,
+      &__body {
+        text-align: left;
+      }
+      &__body,
+      &__btn {
+        margin-left: 0;
+      }
+    }
+    .zx7 {
+      padding-inline: 5.9375rem;
+      background-image: url('public/assets/home/desktop/image-speaker-zx7.jpg');
+    }
+    .yx1 {
+      column-gap: 1.875rem;
+      &__box {
+        padding-inline: 5.9375rem;
+        &--1 {
+          background-image: url('public/assets/home/desktop/image-earphones-yx1.jpg');
         }
       }
     }
