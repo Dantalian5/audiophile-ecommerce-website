@@ -75,6 +75,7 @@ import Link from './common/Link.astro';
     &__img {
       width: 10.9375rem;
       position: relative;
+      max-width: 25.625rem;
       & img {
         width: 100%;
         position: relative;
@@ -93,6 +94,9 @@ import Link from './common/Link.astro';
         width: 350%;
         height: 350%;
       }
+    }
+    &__info {
+      max-width: 21.875rem;
     }
     &__title {
       color: var(--foreground-light);
@@ -117,8 +121,6 @@ import Link from './common/Link.astro';
       opacity: 0.75;
       position: relative;
       z-index: 5;
-      max-width: 21.875rem;
-      margin-inline: auto;
       margin-bottom: 1.5rem;
     }
     &__btn {
@@ -234,15 +236,6 @@ import Link from './common/Link.astro';
       background-image: url('public/assets/home/tablet/image-speaker-zx7.jpg');
       padding-inline: 3.9063rem;
     }
-    .yx1 {
-      &__box {
-        padding-block: 6.3125rem;
-        padding-inline: 2.5rem;
-        &--1 {
-          background-image: url('public/assets/home/tablet/image-earphones-yx1.jpg');
-        }
-      }
-    }
   }
   @media screen and (min-width: 62.5rem) {
     .show {
@@ -250,22 +243,36 @@ import Link from './common/Link.astro';
       margin-bottom: 12.5rem;
       gap: 3rem;
     }
+    .zx7 {
+      padding-inline: 5.9375rem;
+      background-image: url('public/assets/home/desktop/image-speaker-zx7.jpg');
+    }
+  }
+  @media screen and (min-width: 75rem) {
     .zx9 {
       flex-direction: row;
-      padding-block: 8.3125rem 7.75rem;
-      padding-inline: 5.9375rem;
-      justify-content: space-between;
+      padding-block: 0;
+      padding-inline: 7.3125rem 5.9375rem;
+      align-items: stretch;
+      justify-content: center;
+      column-gap: 8.75rem;
       &__img {
+        flex: 1 1 25.625rem;
         align-self: flex-end;
         position: relative;
-        scale: 2;
-        left: 15%;
-        transform: translateY(3%);
+        right: 0;
+        bottom: -0.9375rem;
+        height: 100%;
+        max-width: 500px;
         &::before {
           width: 240%;
           height: 240%;
           top: 70%;
         }
+      }
+      &__info {
+        flex: 1 1 350px;
+        margin-block: 8.3125rem 7.75rem;
       }
       &__title,
       &__body {
@@ -276,14 +283,9 @@ import Link from './common/Link.astro';
         margin-left: 0;
       }
     }
-    .zx7 {
-      padding-inline: 5.9375rem;
-      background-image: url('public/assets/home/desktop/image-speaker-zx7.jpg');
-    }
     .yx1 {
       column-gap: 1.875rem;
       &__box {
-        padding-inline: 5.9375rem;
         &--1 {
           background-image: url('public/assets/home/desktop/image-earphones-yx1.jpg');
         }
