@@ -3,7 +3,7 @@ import Navbar from './common/Navbar.astro';
 import Button from './common/Button.astro';
 ---
 
-<header class="header">
+<header class="section header">
   <Navbar />
   <div class="hero">
     <p class="hero__new">NEW PRODUCT</p>
@@ -22,8 +22,9 @@ import Button from './common/Button.astro';
     min-height: 37.5rem;
     background-color: var(--background-dark-19);
     background-image: url('/assets/home/mobile/image-header.jpg');
-    background-size: 100% auto;
+    background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
 
     display: flex;
     flex-direction: column;
@@ -36,7 +37,7 @@ import Button from './common/Button.astro';
     color: var(--foreground-light);
     text-align: center;
     font-style: normal;
-    padding: 3rem 1.5rem;
+    padding-block: 3rem;
     margin-block: auto;
 
     &__new {
@@ -87,6 +88,24 @@ import Button from './common/Button.astro';
       }
       &__body {
         margin-bottom: 2.5rem;
+      }
+    }
+  }
+  @media screen and (min-width: 62.5rem) {
+    .header {
+      background-image: url('/assets/home/desktop/image-hero.jpg');
+      margin-bottom: 8.125rem;
+    }
+    .hero {
+      text-align: left;
+      &__title {
+        font-size: 3.5rem;
+      }
+      &__body {
+        margin-left: 0;
+      }
+      &__btn {
+        margin-left: 0;
       }
     }
   }

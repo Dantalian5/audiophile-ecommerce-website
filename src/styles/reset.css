@@ -66,8 +66,15 @@ select {
   font-family: inherit;
   font-size: inherit;
 }
-a {
+a,
+ul,
+li {
   text-decoration: none;
+}
+ul,
+ol,
+li {
+  list-style: none;
 }
 button {
   cursor: pointer;

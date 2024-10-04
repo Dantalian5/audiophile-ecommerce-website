@@ -2,7 +2,7 @@
 import Link from './common/Link.astro';
 ---
 
-<section class="about">
+<section class="section about">
   <picture>
     <source
       srcset="public/assets/shared/desktop/image-best-gear.jpg"
@@ -33,8 +33,6 @@ import Link from './common/Link.astro';
 <style lang="scss">
   .about {
     background-color: transparent;
-    padding-inline: 1.5rem;
-    margin-bottom: 7.5rem;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -79,8 +77,6 @@ import Link from './common/Link.astro';
   }
   @media screen and (min-width: 43.75rem) {
     .about {
-      padding-inline: 2.5rem;
-      margin-bottom: 6rem;
       row-gap: 4rem;
       &__title {
         font-size: 2.5rem;
@@ -91,8 +87,6 @@ import Link from './common/Link.astro';
   }
   @media screen and (min-width: 62.5rem) {
     .about {
-      padding-inline: 10.3125rem;
-      margin-bottom: 12.5rem;
       flex-direction: row-reverse;
       &__title {
         text-align: left;

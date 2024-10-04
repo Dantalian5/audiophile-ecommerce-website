@@ -1,0 +1,6 @@
+.section {
+  padding-inline: max(1.5rem, 6%);
+  &:not(footer, header) {
+    margin-bottom: 7.5rem;
+  }
+}

@@ -2,7 +2,7 @@
 
 ---
 
-<footer class="footer">
+<footer class="section footer">
   <div class="footer__logo">
     <svg width="143" height="25" xmlns="http://www.w3.org/2000/svg"
       ><path
@@ -55,7 +55,6 @@
   .footer {
     position: relative;
     background-color: var(--background-dark);
-    padding-inline: 1.5rem;
     padding-block: 3.25rem 2.375rem;
 
     display: flex;
@@ -136,7 +135,6 @@
   }
   @media screen and (min-width: 43.75rem) {
     .footer {
-      padding-inline: 2.5rem;
       padding-block: 3.75rem 2.875rem;
 
       gap: 2rem;
@@ -168,7 +166,6 @@
   }
   @media screen and (min-width: 62.5rem) {
     .footer {
-      padding-inline: 10.3125rem;
       padding-block: 4.6875rem 3rem;
 
       gap: 2.25rem;
@@ -180,6 +177,8 @@
       }
       &__navigation {
         width: fit-content;
+        min-width: 60%;
+        justify-content: flex-end;
       }
       &__body {
         max-width: 33.75rem;

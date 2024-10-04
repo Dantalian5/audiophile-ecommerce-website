@@ -1,0 +1,16 @@
+@media screen and (min-width: 43.75rem) {
+  .section {
+    padding-inline: 5.2%;
+    &:not(footer) {
+      margin-bottom: 6rem;
+    }
+  }
+}
+@media screen and (min-width: 62.5rem) {
+  .section {
+    padding-inline: min(10.3125rem, 12%);
+    &:not(footer) {
+      margin-bottom: 12.5rem;
+    }
+  }
+}
