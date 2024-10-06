@@ -1,6 +1,6 @@
 .section {
   padding-inline: max(1.5rem, 6%);
-  &:not(footer, header) {
+  &:not(footer, header, .navbar) {
     margin-bottom: 7.5rem;
   }
 }

@@ -4,7 +4,7 @@ import Button from './common/Button.astro';
 ---
 
 <header class="section header">
-  <Navbar />
+  <!-- <Navbar /> -->
   <div class="hero">
     <p class="hero__new">NEW PRODUCT</p>
     <h1 class="hero__title">XX99 Mark II <br /> Headphones</h1>
@@ -19,13 +19,13 @@ import Button from './common/Button.astro';
 </header>
 <style lang="scss">
   .header {
-    min-height: 37.5rem;
+    min-height: 31.25rem;
     background-color: var(--background-dark-19);
     background-image: url('/assets/home/mobile/image-header.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
+    padding-block: 6.75rem;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -37,7 +37,6 @@ import Button from './common/Button.astro';
     color: var(--foreground-light);
     text-align: center;
     font-style: normal;
-    padding-block: 3rem;
     margin-block: auto;
 
     &__new {
@@ -74,7 +73,7 @@ import Button from './common/Button.astro';
   }
   @media screen and (min-width: 43.75rem) {
     .header {
-      min-height: 45.625rem;
+      min-height: min(45.625rem, 100vh);
       background-image: url('/assets/home/tablet/image-header.jpg');
       margin-bottom: 6rem;
     }
