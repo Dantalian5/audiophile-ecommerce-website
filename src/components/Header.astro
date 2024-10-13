@@ -1,5 +1,4 @@
 ---
-import Navbar from './common/Navbar.astro';
 import Button from './common/Button.astro';
 ---
 
@@ -21,7 +20,7 @@ import Button from './common/Button.astro';
   .header {
     min-height: 31.25rem;
     background-color: var(--background-dark-19);
-    background-image: url('../assets/home/mobile/image-header.jpg');
+    background-image: url('/assets/home/mobile/image-header.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -74,7 +73,7 @@ import Button from './common/Button.astro';
   @media screen and (min-width: 43.75rem) {
     .header {
       min-height: min(45.625rem, 100vh);
-      background-image: url('../assets/home/tablet/image-header.jpg');
+      background-image: url('/assets/home/tablet/image-header.jpg');
       margin-bottom: 6rem;
     }
     .hero {
@@ -92,7 +91,7 @@ import Button from './common/Button.astro';
   }
   @media screen and (min-width: 62.5rem) {
     .header {
-      background-image: url('../assets/home/desktop/image-hero.jpg');
+      background-image: url('/assets/home/desktop/image-hero.jpg');
       margin-bottom: 8.125rem;
     }
     .hero {

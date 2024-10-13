@@ -1,12 +1,47 @@
 ---
 import Layout from '../../layouts/MainLayout.astro';
 import ShopSection from '../../components/ShopSection.astro';
-import ShowSection from '../../components/ShowSection.astro';
+import Product from '../../components/common/Product.astro';
 ---
 
 <Layout title="audiophile | by MV">
+  <header class="header">
+    <h1 class="header__title">HEADPHONES</h1>
+  </header>
+  <main class="section">
+    <Product
+      title="XX99 Mark II"
+      subtitle="Headphones"
+      body="The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound."
+      imgRef={[
+        '/assets/product-xx99-mark-two-headphones/mobile/image-category-page-preview.jpg',
+        '/assets/product-xx99-mark-two-headphones/tablet/image-category-page-preview.jpg',
+        '/assets/product-xx99-mark-two-headphones/desktop/image-category-page-preview.jpg',
+      ]}
+      newProductTag={true}
+    />
+  </main>
   <ShopSection />
-  <ShowSection />
 </Layout>
 
-<style lang="scss"></style>
+<style lang="scss">
+  .header {
+    background-color: var(--background-dark-19);
+    padding: 2rem;
+    width: 100%;
+    overflow: hidden;
+
+    margin-bottom: 4rem;
+    &__title {
+      color: var(--foreground-light);
+      text-align: center;
+      font-size: 1.75rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: 0.125rem;
+      text-transform: uppercase;
+      margin-inline: auto;
+    }
+  }
+</style>
