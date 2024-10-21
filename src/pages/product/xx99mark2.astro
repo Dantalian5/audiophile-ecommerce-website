@@ -1,0 +1,24 @@
+---
+import Layout from '../../layouts/MainLayout.astro';
+import ProductShop from '../../components/common/ProductShop.astro';
+---
+
+<Layout title="audiophile | by MV">
+  <div class="section">
+    <ProductShop
+      title="XX99 Mark II"
+      subtitle="Headphones"
+      body="The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound."
+      imgRef={[
+        '/assets/product-xx99-mark-two-headphones/mobile/image-category-page-preview.jpg',
+        '/assets/product-xx99-mark-two-headphones/tablet/image-category-page-preview.jpg',
+        '/assets/product-xx99-mark-two-headphones/desktop/image-category-page-preview.jpg',
+      ]}
+      newProductTag={true}
+      href="/product/xx99mark2"
+      price="2,999"
+    />
+  </div>
+</Layout>
+
+<style lang="sass"></style>

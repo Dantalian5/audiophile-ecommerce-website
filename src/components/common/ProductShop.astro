@@ -1,32 +1,36 @@
 ---
 import Button from './Button.astro';
+import Number from '../form/Number.astro';
 const {
   title = '',
   subtitle = '',
   body = '',
   imgRef = [''],
-  href = '#',
   newProductTag = false,
-  direction = 'leftToRight',
+  price = 0,
 } = Astro.props;
 ---
 
-<article class={`product ${direction}`}>
+<article class="product-shop">
   <picture>
     {imgRef[2] && <source srcset={imgRef[2]} media="(min-width: 75rem)" />}
     {imgRef[1] && <source srcset={imgRef[1]} media="(min-width: 43.75rem)" />}
-    <img class="product__img" src={imgRef[0]} alt={title} />
+    <img class="product-shop__img" src={imgRef[0]} alt={title} />
   </picture>
-  <div class="product__info">
-    {newProductTag && <span class="product__new">NEW PRODUCT</span>}
-    <h2 class="product__title">{title}<br />{subtitle}</h2>
-    <p class="product__body">{body}</p>
-    <Button href={href} label="See Product" variant="accent" />
+  <div class="product-shop__info">
+    {newProductTag && <span class="product-shop__new">NEW PRODUCT</span>}
+    <h2 class="product-shop__title">{title}<br />{subtitle}</h2>
+    <p class="product-shop__body">{body}</p>
+    <p class="product-shop__price">${price}</p>
+    <div class="product-shop__cart">
+      <Number />
+      <Button label="add to cart" variant="accent" />
+    </div>
   </div>
 </article>
 
 <style lang="scss">
-  .product {
+  .product-shop {
     background-color: none;
     display: flex;
     flex-direction: column;
@@ -49,12 +53,11 @@ const {
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
     }
     &__new {
       color: var(--accent);
-      text-align: center;
       font-size: 0.875rem;
       font-style: normal;
       font-weight: 400;
@@ -65,7 +68,6 @@ const {
     }
     &__title {
       color: var(--foreground-dark);
-      text-align: center;
       font-size: 1.75rem;
       font-style: normal;
       font-weight: 700;
@@ -76,7 +78,6 @@ const {
     }
     &__body {
       color: var(--foreground-dark);
-      text-align: center;
       font-size: 0.9375rem;
       font-style: normal;
       font-weight: 400;
@@ -84,9 +85,24 @@ const {
       opacity: 0.5;
       margin-bottom: 0.5rem;
     }
+    &__price {
+      color: var(--foreground-dark);
+      font-size: 1.125rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: 0.0804rem;
+      text-transform: uppercase;
+    }
+    &__cart {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+    }
   }
   @media screen and (min-width: 43.75rem) {
-    .product {
+    .product-shop {
       gap: 3.25rem;
       &__new {
         margin-bottom: 0;
@@ -100,7 +116,7 @@ const {
     }
   }
   @media screen and (min-width: 75rem) {
-    .product {
+    .product-shop {
       flex-direction: row;
       column-gap: 125px;
       &.rightToLeft {

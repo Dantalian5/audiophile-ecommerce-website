@@ -1,15 +1,13 @@
 ---
 import Layout from '../layouts/MainLayout.astro';
 import Header from '../components/Header.astro';
-import ShopSection from '../components/ShopSection.astro';
 import ShowSection from '../components/ShowSection.astro';
 import '../styles/style.scss';
 ---
 
 <Layout title="audiophile | by MV">
-  <Header />
-  <ShopSection />
-  <ShowSection />
+  <Header slot="header" />
+  <ShowSection slot="after-navigation" />
 </Layout>
 
 <style lang="scss"></style>

@@ -3,10 +3,11 @@ const {
   variant = 'accent',
   label = 'button',
   endContent = false,
+  href = null,
 } = Astro.props;
 ---
-
-<button class=`button ${variant}`>
+{
+  href ? (<a href={href} class=`button ${variant}`>
   <p class="button__text">{label}</p>
   {
     endContent && (
@@ -26,10 +27,33 @@ const {
       </svg>
     )
   }
-</button>
+</a>) : (<button class=`button ${variant}`>
+  <p class="button__text">{label}</p>
+  {
+    endContent && (
+      <svg
+        class="button__icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="7"
+        height="12"
+        viewBox="0 0 7 12"
+        fill="none"
+      >
+        <path
+          d="M1.32178 1L6.32178 6L1.32178 11"
+          stroke="currentColor"
+          stroke-width="2"
+        />
+      </svg>
+    )
+  }
+</button>)
+}
+
 <style lang="scss">
   .button {
     padding: 1rem 2rem;
+    width: fit-content;
     border: 1px solid transparent;
     cursor: pointer;
     font-size: 0.8125rem;
@@ -56,6 +80,15 @@ const {
     &:hover {
       background-color: var(--background-dark);
       color: var(--foreground-light);
+    }
+  }
+  .flat {
+    background-color: var(--background-dark);
+    border-color: var(--background-dark);
+    color: var(--foreground-light);
+    &:hover {
+      background-color: #4c4c4c;
+      border-color: #4c4c4c;
     }
   }
   .accent {

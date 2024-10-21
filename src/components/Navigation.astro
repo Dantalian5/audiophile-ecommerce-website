@@ -1,5 +1,5 @@
 ---
-import Link from './common/Link.astro';
+import Button from './common/Button.astro';
 
 const categories = [
   {
@@ -29,9 +29,9 @@ const categories = [
         </div>
         <p class="category__name">{category.name}</p>
         <div class="category__btn">
-          <Link variant="light" endContent href={category.link}>
+          <Button variant="light" endContent href={category.link}>
             Shop
-          </Link>
+          </Button>
         </div>
       </div>
     ))
