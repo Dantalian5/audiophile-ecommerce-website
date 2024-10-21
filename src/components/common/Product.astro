@@ -7,13 +7,14 @@ const {
   imgRef = [''],
   href = '#',
   newProductTag = false,
+  direction = 'leftToRight',
 } = Astro.props;
 ---
 
-<article class="product">
+<article class={`product ${direction}`}>
   <picture>
-    <source srcset={imgRef[2]} media="(min-width: 62.5rem)" />
-    <source srcset={imgRef[1]} media="(min-width: 43.75rem)" />
+    {imgRef[2] && <source srcset={imgRef[2]} media="(min-width: 75rem)" />}
+    {imgRef[1] && <source srcset={imgRef[1]} media="(min-width: 43.75rem)" />}
     <img class="product__img" src={imgRef[0]} alt={title} />
   </picture>
   <div class="product__info">
@@ -95,6 +96,29 @@ const {
         font-size: 2.5rem;
         line-height: 2.75rem; /* 110% */
         letter-spacing: 0.0893rem;
+      }
+    }
+  }
+  @media screen and (min-width: 75rem) {
+    .product {
+      flex-direction: row;
+      column-gap: 125px;
+      &.rightToLeft {
+        flex-direction: row-reverse;
+      }
+      &__img {
+        flex: 0 1 50%;
+        width: auto;
+        height: auto;
+      }
+      &__info {
+        flex: 1 0 40%;
+        align-items: flex-start;
+        max-width: none;
+      }
+      &__title,
+      &__body {
+        text-align: left;
       }
     }
   }
