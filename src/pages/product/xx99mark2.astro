@@ -4,21 +4,39 @@ import ProductShop from '../../components/common/ProductShop.astro';
 ---
 
 <Layout title="audiophile | by MV">
-  <div class="section">
+  <header class="section">
+    <button id="back-button" class="back-button">Go Back</button>
+  </header>
+  <section class="section">
     <ProductShop
       title="XX99 Mark II"
       subtitle="Headphones"
       body="The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound."
       imgRef={[
-        '/assets/product-xx99-mark-two-headphones/mobile/image-category-page-preview.jpg',
-        '/assets/product-xx99-mark-two-headphones/tablet/image-category-page-preview.jpg',
-        '/assets/product-xx99-mark-two-headphones/desktop/image-category-page-preview.jpg',
+        '/assets/shared/mobile/image-xx99-mark-two-headphones.jpg',
+        '/assets/shared/tablet/image-xx99-mark-two-headphones.jpg',
+        '/assets/shared/desktop/image-xx99-mark-two-headphones.jpg',
       ]}
       newProductTag={true}
       href="/product/xx99mark2"
       price="2,999"
     />
-  </div>
+  </section>
 </Layout>
 
-<style lang="sass"></style>
+<style lang="scss">
+  .back-button {
+    color: var(--foreground-dark);
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.66;
+    opacity: 0.5;
+    margin-block: 1rem 1.5rem;
+  }
+</style>
+<script>
+  document.getElementById('back-button').addEventListener('click', () => {
+    window.history.back();
+  });
+</script>

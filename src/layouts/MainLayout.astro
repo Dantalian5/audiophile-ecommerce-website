@@ -26,7 +26,7 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="body">
     <Navbar />
     <slot name="header" />
     <slot />
@@ -48,7 +48,7 @@ const { title } = Astro.props;
     --accent: #d87d4a;
     --error: #cd2c2c;
   }
-  body {
+  .body {
     font-family: 'Manrope', sans-serif;
     background-color: var(--background-light);
     width: clamp(20rem, 100%, 90rem);
