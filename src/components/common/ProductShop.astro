@@ -115,7 +115,6 @@ const {
       }
       &__info {
         align-items: flex-start;
-        max-width: 27.8125rem;
       }
       &__new {
         margin-bottom: 1rem;
@@ -134,6 +133,15 @@ const {
   @media screen and (min-width: 75rem) {
     .product-shop {
       column-gap: 7.8125rem;
+      &__img {
+        flex-basis: 33.75rem;
+        &--img {
+          height: 35rem;
+        }
+      }
+      &__info {
+        flex-basis: 27.8125rem;
+      }
       &__price {
         margin-bottom: 3rem;
       }

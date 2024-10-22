@@ -12,11 +12,18 @@ const {
 ---
 
 <article class={`product ${direction}`}>
-  <picture>
+  <!-- <picture>
     {imgRef[2] && <source srcset={imgRef[2]} media="(min-width: 75rem)" />}
     {imgRef[1] && <source srcset={imgRef[1]} media="(min-width: 43.75rem)" />}
     <img class="product__img" src={imgRef[0]} alt={title} />
-  </picture>
+  </picture> -->
+  <div class="product__img">
+    <picture>
+      {imgRef[2] && <source srcset={imgRef[2]} media="(min-width: 75rem)" />}
+      {imgRef[1] && <source srcset={imgRef[1]} media="(min-width: 43.75rem)" />}
+      <img class="product__img--img" src={imgRef[0]} alt={title} />
+    </picture>
+  </div>
   <div class="product__info">
     {newProductTag && <span class="product__new">NEW PRODUCT</span>}
     <h2 class="product__title">{title}<br />{subtitle}</h2>
@@ -36,12 +43,14 @@ const {
     align-items: center;
     &__img {
       width: 100%;
-      height: 22rem;
-      border-radius: 8px;
-      background-color: var(--secondary-ghost);
-
-      object-fit: cover;
-      object-position: center center;
+      &--img {
+        width: 100%;
+        height: 22rem;
+        border-radius: 8px;
+        background-color: var(--secondary-ghost);
+        object-fit: cover;
+        object-position: center center;
+      }
     }
     &__info {
       width: 100%;
@@ -107,12 +116,13 @@ const {
         flex-direction: row-reverse;
       }
       &__img {
-        flex: 0 1 50%;
-        width: auto;
-        height: auto;
+        flex: 1 1 33.75rem;
+        &--img {
+          height: auto;
+        }
       }
       &__info {
-        flex: 1 0 40%;
+        flex: 1 1 27.8125rem;
         align-items: flex-start;
         max-width: none;
       }
