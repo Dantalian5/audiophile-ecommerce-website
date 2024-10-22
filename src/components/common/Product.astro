@@ -12,11 +12,6 @@ const {
 ---
 
 <article class={`product ${direction}`}>
-  <!-- <picture>
-    {imgRef[2] && <source srcset={imgRef[2]} media="(min-width: 75rem)" />}
-    {imgRef[1] && <source srcset={imgRef[1]} media="(min-width: 43.75rem)" />}
-    <img class="product__img" src={imgRef[0]} alt={title} />
-  </picture> -->
   <div class="product__img">
     <picture>
       {imgRef[2] && <source srcset={imgRef[2]} media="(min-width: 75rem)" />}
@@ -41,8 +36,16 @@ const {
     width: 100%;
     position: relative;
     align-items: center;
-    &__img {
+    &__img,
+    &__info {
       width: 100%;
+      position: relative;
+      opacity: 0;
+      transition:
+        opacity 0.5s ease-out,
+        transform 0.5s ease-out;
+    }
+    &__img {
       &--img {
         width: 100%;
         height: 22rem;
@@ -53,7 +56,6 @@ const {
       }
     }
     &__info {
-      width: 100%;
       max-width: 35.75rem;
       display: flex;
       flex-direction: column;
@@ -132,4 +134,62 @@ const {
       }
     }
   }
+  .product {
+    &__img {
+      transform: translateX(-100%);
+    }
+    &__info {
+      transform: translateX(100%);
+    }
+  }
+  .rightToLeft > .product {
+    &__img {
+      transform: translateX(100%);
+    }
+    &__info {
+      transform: translateX(-100%);
+    }
+  }
+  .in-view > .product {
+    &__img {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    &__info {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
 </style>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const targets = document.querySelectorAll('.product');
+
+    const observer = new IntersectionObserver(
+      (elements) => {
+        elements.forEach((element) => {
+          const target = element.target as HTMLElement;
+          const boundingTop = element.boundingClientRect.top;
+          const isIntersecting = element.isIntersecting;
+
+          if (isIntersecting) {
+            if (boundingTop > 0) {
+              target.classList.add('in-view');
+            }
+          } else {
+            if (boundingTop > 0) {
+              target.classList.remove('in-view');
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+
+    targets.forEach((target) => {
+      observer.observe(target);
+    });
+  });
+</script>

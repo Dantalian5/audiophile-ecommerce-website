@@ -1,0 +1,143 @@
+---
+import Button from './common/Button.astro';
+
+const categories = [
+  {
+    name: 'XX99 MARK II',
+    imgRef: [
+      '/assets/shared/mobile/image-xx99-mark-two-headphones.jpg',
+      '/assets/shared/tablet/image-xx99-mark-two-headphones.jpg',
+      '/assets/shared/desktop/image-xx99-mark-two-headphones.jpg',
+    ],
+    link: '/category/headphones',
+  },
+  {
+    name: 'XX99 MARK I',
+    imgRef: [
+      '/assets/shared/mobile/image-xx99-mark-one-headphones.jpg',
+      '/assets/shared/tablet/image-xx99-mark-one-headphones.jpg',
+      '/assets/shared/desktop/image-xx99-mark-one-headphones.jpg',
+    ],
+    link: '/category/speakers',
+  },
+  {
+    name: 'ZX9 SPEAKER',
+    imgRef: [
+      '/assets/shared/mobile/image-zx9-speaker.jpg',
+      '/assets/shared/tablet/image-zx9-speaker.jpg',
+      '/assets/shared/desktop/image-zx9-speaker.jpg',
+    ],
+    link: '/category/earphones',
+  },
+];
+---
+
+<section class="section ymal-section">
+  <h2 class="ymal-section__title">you may also like</h2>
+  <div class="ymal-section__wrapper">
+    {
+      categories.map((category) => (
+        <div class="ymal-section__card">
+          <div class="ymal-section__card__img">
+            <picture>
+              {category.imgRef[2] && (
+                <source
+                  srcset={category.imgRef[2]}
+                  media="(min-width: 75rem)"
+                />
+              )}
+              {category.imgRef[1] && (
+                <source
+                  srcset={category.imgRef[1]}
+                  media="(min-width: 43.75rem)"
+                />
+              )}
+              <img
+                class="yaml-section__card__img--img"
+                src={category.imgRef[0]}
+                alt={category.name}
+              />
+            </picture>
+          </div>
+          <p class="ymal-section__card__name">{category.name}</p>
+          <div class="ymal-section__card__btn">
+            <Button variant="accent" href={category.link} label="See Product" />
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+<style lang="scss">
+  .ymal-section {
+    &__title {
+      color: var(--foreground-dark);
+      text-align: center;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1.5; /* 150% */
+      letter-spacing: 0.0536rem;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      row-gap: 3.5rem;
+      column-gap: 0.625rem;
+      column-gap: 0.625rem;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    &__card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 2rem;
+      &__img {
+        width: 100%;
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: var(--secondary-ghost);
+        &--img {
+          width: 100%;
+        }
+      }
+      &__name {
+        color: var(--foreground-dark);
+        text-align: center;
+        font-size: 1.5rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 0.1071rem;
+        text-transform: uppercase;
+      }
+      &__btn {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+  @media screen and (min-width: 43.75rem) {
+    .ymal-section {
+      &__wrapper {
+        flex-direction: row;
+      }
+      &__card {
+        flex: 1 1 100%;
+        &__img {
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 62.5rem) {
+    .ymal-section {
+      &__wrapper {
+        column-gap: 1.875rem;
+      }
+    }
+  }
+</style>

@@ -32,13 +32,19 @@
 
 <style lang="scss">
   .navbar {
-    position: relative;
+    position: sticky;
+    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-block: 1.5rem;
     background-color: var(--background-dark-19);
     gap: 2.625rem;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+    &.hidden {
+      transform: translateY(-100%);
+    }
     &__logo {
       width: fit-content;
       display: block;
@@ -132,5 +138,24 @@
 
   menuButton.addEventListener('click', () => {
     navigationMenu.classList.toggle('active');
+  });
+
+  let lastScrollY = window.scrollY;
+
+  window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    const currentScrollY = window.scrollY;
+
+    if (
+      currentScrollY > lastScrollY &&
+      currentScrollY > 0 &&
+      currentScrollY > 100
+    ) {
+      navbar.classList.add('hidden');
+    } else {
+      navbar.classList.remove('hidden');
+    }
+
+    lastScrollY = currentScrollY;
   });
 </script>
