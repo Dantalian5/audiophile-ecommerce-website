@@ -8,11 +8,9 @@ import GoBack from '@components/common/GoBack.astro';
     <GoBack />
   </header>
   <article class="main-margin-bottom">
-    <slot name="product-cart" />
-    <slot name="product-description" />
-    <slot name="product-gallery" />
+    <slot name="main" />
   </article>
-  <slot name="product-advice" />
+  <slot />
 </Layout>
 
 <style lang="scss">
