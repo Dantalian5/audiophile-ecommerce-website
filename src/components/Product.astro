@@ -1,5 +1,5 @@
 ---
-import Button from './Button.astro';
+import Button from '@components/common/Button.astro';
 const {
   title = '',
   subtitle = '',
@@ -29,6 +29,7 @@ const {
 
 <style lang="scss">
   .product {
+    overflow: hidden;
     background-color: none;
     display: flex;
     flex-direction: column;

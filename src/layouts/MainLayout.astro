@@ -2,16 +2,16 @@
 interface Props {
   title: string;
 }
-import '../styles/reset.css';
+import '@/styles/reset.css';
 import '@fontsource/manrope/400.css';
 import '@fontsource/manrope/500.css';
 import '@fontsource/manrope/700.css';
-import '../styles/style.scss';
+import '@/styles/style.scss';
 
-import Navbar from '../components/common/Navbar.astro';
-import Navigation from '../components/Navigation.astro';
-import AboutSection from '../components/AboutSection.astro';
-import Footer from '../components/Footer.astro';
+import Navbar from '@components/common/Navbar.astro';
+import Navigation from '@components/Navigation.astro';
+import AboutSection from '@components/AboutSection.astro';
+import Footer from '@components/Footer.astro';
 
 const { title } = Astro.props;
 ---

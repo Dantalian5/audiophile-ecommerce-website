@@ -1,19 +1,25 @@
-.section {
+.main-padding {
   padding-inline: max(1.5rem, 6%);
-  &:not(footer, header, .navbar) {
+}
+.main-margin-bottom {
+  margin-bottom: 7.5rem;
+}
+.secondary-margin-bottom {
+  margin-bottom: 5.625rem;
+}
+@media screen and (min-width: 43.75rem) {
+  .main-padding {
+    padding-inline: 5.2%;
+  }
+  .secondary-margin-bottom {
     margin-bottom: 7.5rem;
   }
 }
-@media screen and (min-width: 43.75rem) {
-  .section {
-    padding-inline: 5.2%;
-  }
-}
 @media screen and (min-width: 62.5rem) {
-  .section {
+  .main-padding {
     padding-inline: min(10.3125rem, 12%);
-    &:not(footer, header, .navbar) {
-      margin-bottom: 10rem;
-    }
+  }
+  .main-margin-bottom {
+    margin-bottom: 10rem;
   }
 }

@@ -1,5 +1,5 @@
 ---
-import Layout from './MainLayout.astro';
+import Layout from '@layouts/MainLayout.astro';
 
 const { category } = Astro.props;
 ---
@@ -8,7 +8,7 @@ const { category } = Astro.props;
   <header class="header animation-retractil">
     <h1 class="header__title">{category}</h1>
   </header>
-  <main class="section products">
+  <main class="main-padding main-margin-bottom products">
     <slot />
   </main>
 </Layout>

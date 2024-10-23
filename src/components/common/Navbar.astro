@@ -1,4 +1,4 @@
-<div class="navbar section">
+<div class="main-padding navbar">
   <button id="menuButton" class="menu" title="Open Navigation Menu">
     <svg width="16" height="15" xmlns="http://www.w3.org/2000/svg"
       ><g fill="#FFF" fill-rule="evenodd"
@@ -32,6 +32,7 @@
 
 <style lang="scss">
   .navbar {
+    width: 100%;
     position: sticky;
     top: 0;
     display: flex;
@@ -60,7 +61,7 @@
       left: 50%;
       transform: translate(-50%, 0);
       flex-direction: column;
-      width: 100vw;
+      width: 100%;
       height: 0;
       overflow: hidden;
       background-color: var(--background-dark-19);
@@ -89,7 +90,7 @@
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 100vh;
+      width: 100%;
       height: 1px;
       border-bottom: 1px solid;
       border-color: var(--foreground-light);

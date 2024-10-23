@@ -1,0 +1,118 @@
+---
+const { description, specs } = Astro.props as {
+  description: string[];
+  specs: string[][];
+};
+---
+
+<section class="main-padding secondary-margin-bottom product-info">
+  <div class="product-info--specs">
+    <h2 class="product-info__title">FEATURES</h2>
+    <p class="product-info__body">
+      {
+        description.map((paragraph) => (
+          <span class="product-info__body__paragraph">{paragraph}</span>
+        ))
+      }
+    </p>
+  </div>
+  <div class="product-info--list product-info--flex">
+    <h2 class="product-info__title">in the box</h2>
+    <ul class="product-info__list">
+      {
+        specs.map((element) => (
+          <li class="product-info__list__item">
+            <span>{element[0]}</span>
+            <p class="product-info__body">{element[1]}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style lang="scss">
+  .product-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5.625rem;
+    column-gap: 7.8125rem;
+    align-items: flex-start;
+    &--specs,
+    &--list {
+      flex: 1 1 100%;
+    }
+    &__title {
+      color: var(--foreground-dark);
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1.5; /* 150% */
+      letter-spacing: 0.0536rem;
+      text-transform: uppercase;
+
+      margin-bottom: 1.5rem;
+    }
+    &__body {
+      color: var(--foreground-dark);
+      font-size: 0.9375rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1.66; /* 166.667% */
+      opacity: 0.5;
+      &__paragraph:not(:last-child) {
+        display: inline-block;
+        margin-bottom: 1.66em;
+      }
+    }
+    &__list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      &__item {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+        & > span {
+          color: var(--accent);
+          font-weight: 700;
+          opacity: none;
+        }
+      }
+    }
+    &--flex {
+      display: flex;
+      width: 100%;
+      column-gap: 2rem;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      & > * {
+        flex: 1 1 13.75rem;
+        align-self: flex-start;
+      }
+    }
+  }
+  @media screen and (min-width: 43.75rem) {
+    .product-info {
+      row-gap: 7.5rem;
+      &__title {
+        font-size: 2rem;
+        line-height: 1.12;
+        letter-spacing: 0.0714rem;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+  @media screen and (min-width: 75rem) {
+    .product-info {
+      flex-direction: row;
+      &--specs {
+        flex-basis: 50%;
+      }
+      &--list {
+        max-width: 21.875rem;
+      }
+    }
+  }
+</style>

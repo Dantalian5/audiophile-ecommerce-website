@@ -1,6 +1,6 @@
 ---
-import Button from './Button.astro';
-import Number from '../form/Number.astro';
+import Button from '@components/common/Button.astro';
+import Number from '@components/form/Number.astro';
 const {
   title = '',
   subtitle = '',
@@ -11,7 +11,7 @@ const {
 } = Astro.props;
 ---
 
-<article class="product-shop">
+<section class="main-padding secondary-margin-bottom product-shop">
   <div class="product-shop__img">
     <picture>
       {imgRef[2] && <source srcset={imgRef[2]} media="(min-width: 75rem)" />}
@@ -29,7 +29,7 @@ const {
       <Button label="add to cart" variant="accent" />
     </div>
   </div>
-</article>
+</section>
 
 <style lang="scss">
   .product-shop {

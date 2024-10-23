@@ -1,148 +1,62 @@
 ---
-import Layout from '@layouts/MainLayout.astro';
-import ProductShop from '@components/common/ProductShop.astro';
-import GoBack from '@components/common/GoBack.astro';
-import YouMayAlsoLike from '@components/YouMayAlsoLike.astro';
-
-const imgRef1 = [
-  '/assets/product-xx99-mark-two-headphones/mobile/image-gallery-1.jpg',
-  '/assets/product-xx99-mark-two-headphones/tablet/image-gallery-1.jpg',
-  '/assets/product-xx99-mark-two-headphones/desktop/image-gallery-1.jpg',
-];
-const imgRef2 = [
-  '/assets/product-xx99-mark-two-headphones/mobile/image-gallery-2.jpg',
-  '/assets/product-xx99-mark-two-headphones/tablet/image-gallery-2.jpg',
-  '/assets/product-xx99-mark-two-headphones/desktop/image-gallery-2.jpg',
-];
-const imgRef3 = [
-  '/assets/product-xx99-mark-two-headphones/mobile/image-gallery-3.jpg',
-  '/assets/product-xx99-mark-two-headphones/tablet/image-gallery-3.jpg',
-  '/assets/product-xx99-mark-two-headphones/desktop/image-gallery-3.jpg',
-];
+import ProductLayout from '@/layouts/ProductLayout.astro';
+import ProductCart from '@components/ProductCart.astro';
+import PhotoGallery from '@/components/ProductGallery.astro';
+import ProductSpecs from '@/components/ProductSpecs.astro';
+import YouMayAlsoLike from '@/components/YouMayAlsoLike.astro';
 ---
 
-<Layout title="audiophile | by MV">
-  <header class="section header">
-    <GoBack />
-  </header>
-  <section class="section">
-    <div class="product-cart">
-      <ProductShop
-        title="XX99 Mark II"
-        subtitle="Headphones"
-        body="The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound."
-        imgRef={[
-          '/assets/shared/mobile/image-xx99-mark-two-headphones.jpg',
-          '/assets/shared/tablet/image-xx99-mark-two-headphones.jpg',
-          '/assets/shared/desktop/image-xx99-mark-two-headphones.jpg',
-        ]}
-        newProductTag={true}
-        href="/product/xx99mark2"
-        price="2,999"
-      />
-    </div>
-    <div class="product-info">
-      <div class="product-info--specs">
-        <h2 class="product-info__title">FEATURES</h2>
-        <p class="product-info__body">
-          Featuring a genuine leather head strap and premium earcups, these
-          headphones deliver superior comfort for those who like to enjoy
-          endless listening. It includes intuitive controls designed for any
-          situation. Whether you’re taking a business call or just in your own
-          personal space, the auto on/off and pause features ensure that you’ll
-          never miss a beat. <br /><br /> The advanced Active Noise Cancellation
-          with built-in equalizer allow you to experience your audio world on your
-          terms. It lets you enjoy your audio in peace, but quickly interact with
-          your surroundings when you need to. Combined with Bluetooth 5. 0 compliant
-          connectivity and 17 hour battery life, the XX99 Mark II headphones gives
-          you superior sound, cutting-edge technology, and a modern design aesthetic.
-        </p>
-      </div>
-      <div class="product-info--list product-info--flex">
-        <h2 class="product-info__title">in the box</h2>
-        <ul class="product-info__list">
-          <li class="product-info__list__item">
-            <span>1x</span>
-            <p class="product-info__body">Headphone Unit</p>
-          </li>
-          <li class="product-info__list__item">
-            <span>2x</span>
-            <p class="product-info__body">Replacement Earcups</p>
-          </li>
-          <li class="product-info__list__item">
-            <span>1x</span>
-            <p class="product-info__body">User Manual</p>
-          </li>
-          <li class="product-info__list__item">
-            <span>1x</span>
-            <p class="product-info__body">3.5mm 5m Audio Cable</p>
-          </li>
-          <li class="product-info__list__item">
-            <span>1x</span>
-            <p class="product-info__body">Travel Bag</p>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="product-gallery">
-      <div class="product-gallery__left">
-        <div class="product-gallery__top">
-          <picture>
-            {
-              imgRef1[2] && (
-                <source srcset={imgRef1[2]} media="(min-width: 75rem)" />
-              )
-            }
-            {
-              imgRef1[1] && (
-                <source srcset={imgRef1[1]} media="(min-width: 43.75rem)" />
-              )
-            }
-            <img
-              class="product-gallery__img"
-              src={imgRef1[0]}
-              alt={'gallery'}
-            />
-          </picture>
-        </div>
-        <div class="product-gallery__bottom">
-          <picture>
-            {
-              imgRef2[2] && (
-                <source srcset={imgRef2[2]} media="(min-width: 75rem)" />
-              )
-            }
-            {
-              imgRef2[1] && (
-                <source srcset={imgRef2[1]} media="(min-width: 43.75rem)" />
-              )
-            }
-            <img
-              class="product-gallery__img"
-              src={imgRef2[0]}
-              alt={'gallery'}
-            />
-          </picture>
-        </div>
-      </div>
-      <div class="product-gallery__right">
-        <picture>
-          {
-            imgRef3[2] && (
-              <source srcset={imgRef3[2]} media="(min-width: 75rem)" />
-            )
-          }
-          {
-            imgRef3[1] && (
-              <source srcset={imgRef3[1]} media="(min-width: 43.75rem)" />
-            )
-          }
-          <img class="product-gallery__img" src={imgRef3[0]} alt={'gallery'} />
-        </picture>
-      </div>
-    </div>
-  </section>
+<ProductLayout>
+  <ProductCart
+    slot="product-cart"
+    title="XX99 Mark II"
+    subtitle="Headphones"
+    body="The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound."
+    imgRef={[
+      '/assets/shared/mobile/image-xx99-mark-two-headphones.jpg',
+      '/assets/shared/tablet/image-xx99-mark-two-headphones.jpg',
+      '/assets/shared/desktop/image-xx99-mark-two-headphones.jpg',
+    ]}
+    newProductTag={true}
+    href="/product/xx99mark2"
+    price="2,999"
+  />
+  <ProductSpecs
+    slot="product-description"
+    description={[
+      "Featuring a genuine leather head strap and premium earcups, these headphones deliver superior comfort for those who like to enjoy endless listening. It includes intuitive controls designed for any situation. Whether you're taking a business call or just in your own personal space, the auto on/off and pause features ensure that you'll never miss a beat.",
+      ' The advanced Active Noise Cancellation with built-in equalizer allow you to experience your audio world on your terms. It lets you enjoy your audio in peace, but quickly interact with your surroundings when you need to. Combined with Bluetooth 5. 0 compliant connectivity and 17 hour battery life, the XX99 Mark II headphones gives you superior sound, cutting-edge technology, and a modern design aesthetic.',
+    ]}
+    specs={[
+      ['1x', 'Headphone Unit'],
+      ['2x', 'Replacement Earcups'],
+      ['1x', 'User Manual'],
+      ['1x', '3.5mm 5m Audio Cable'],
+      ['1x', 'Travel Bag'],
+    ]}
+  />
+  <PhotoGallery
+    slot="product-gallery"
+    imgRef={{
+      top: [
+        '/assets/product-xx99-mark-two-headphones/mobile/image-gallery-1.jpg',
+        '/assets/product-xx99-mark-two-headphones/tablet/image-gallery-1.jpg',
+        '/assets/product-xx99-mark-two-headphones/desktop/image-gallery-1.jpg',
+      ],
+      bottom: [
+        '/assets/product-xx99-mark-two-headphones/mobile/image-gallery-2.jpg',
+        '/assets/product-xx99-mark-two-headphones/tablet/image-gallery-2.jpg',
+        '/assets/product-xx99-mark-two-headphones/desktop/image-gallery-2.jpg',
+      ],
+      left: [
+        '/assets/product-xx99-mark-two-headphones/mobile/image-gallery-3.jpg',
+        '/assets/product-xx99-mark-two-headphones/tablet/image-gallery-3.jpg',
+        '/assets/product-xx99-mark-two-headphones/desktop/image-gallery-3.jpg',
+      ],
+    }}
+  />
   <YouMayAlsoLike
+    slot="product-advice"
     productList={[
       {
         name: 'XX99 MARK II',
@@ -173,141 +87,4 @@ const imgRef3 = [
       },
     ]}
   />
-</Layout>
-
-<style lang="scss">
-  .header {
-    margin-block: 1rem 1.5rem;
-  }
-  .product-cart {
-    width: 100%;
-    margin-bottom: 5.625rem;
-  }
-  .product-info {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    row-gap: 5.625rem;
-    column-gap: 7.8125rem;
-    margin-bottom: 5.625rem;
-    align-items: flex-start;
-    &--specs,
-    &--list {
-      flex: 1 1 100%;
-    }
-    &__title {
-      color: var(--foreground-dark);
-      font-size: 1.5rem;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 1.5; /* 150% */
-      letter-spacing: 0.0536rem;
-      text-transform: uppercase;
-
-      margin-bottom: 1.5rem;
-    }
-    &__body {
-      color: var(--foreground-dark);
-      font-size: 0.9375rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 1.66; /* 166.667% */
-      opacity: 0.5;
-    }
-    &__list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      &__item {
-        display: flex;
-        gap: 1.5rem;
-        align-items: center;
-        & > span {
-          color: var(--accent);
-          font-weight: 700;
-          opacity: none;
-        }
-      }
-    }
-    &--flex {
-      display: flex;
-      width: 100%;
-      column-gap: 2rem;
-      flex-wrap: wrap;
-      align-items: flex-start;
-      & > * {
-        flex: 1 1 13.75rem;
-        align-self: flex-start;
-      }
-    }
-  }
-  .product-gallery {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: stretch;
-    &__left,
-    &__right {
-      flex: 1 1 auto;
-      align-items: stretch;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-    &__img {
-      width: 100%;
-      border-radius: 8px;
-      object-fit: cover;
-      object-position: center center;
-    }
-  }
-  @media screen and (min-width: 43.75rem) {
-    .header {
-      margin-block: 2rem 1.5rem;
-    }
-    .product-cart {
-      margin-bottom: 7.5rem;
-    }
-    .product-info {
-      row-gap: 7.5rem;
-      margin-bottom: 7.5rem;
-      &__title {
-        font-size: 2rem;
-        line-height: 1.12;
-        letter-spacing: 0.0714rem;
-        margin-bottom: 2rem;
-      }
-    }
-    .product-gallery {
-      flex-direction: row;
-      &__left {
-        flex-basis: 17.3125rem;
-      }
-      &__right {
-        flex-basis: 24.6875rem;
-      }
-    }
-  }
-  @media screen and (min-width: 62.5rem) {
-    .product-gallery {
-      &__left {
-        flex-basis: 27.8125rem;
-      }
-      &__right {
-        flex-basis: 39.6875rem;
-      }
-    }
-  }
-  @media screen and (min-width: 75rem) {
-    .product-info {
-      flex-direction: row;
-      &--specs {
-        flex-basis: 50%;
-      }
-      &--list {
-        max-width: 21.875rem;
-      }
-    }
-  }
-</style>
+</ProductLayout>

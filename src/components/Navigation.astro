@@ -1,5 +1,5 @@
 ---
-import Button from './common/Button.astro';
+import Button from '@components/common/Button.astro';
 
 const categories = [
   {
@@ -20,7 +20,7 @@ const categories = [
 ];
 ---
 
-<section class="section shop">
+<section class="main-padding main-margin-bottom shop">
   {
     categories.map((category) => (
       <div class="shop__card category">
@@ -29,9 +29,12 @@ const categories = [
         </div>
         <p class="category__name">{category.name}</p>
         <div class="category__btn">
-          <Button variant="light" endContent href={category.link}>
-            Shop
-          </Button>
+          <Button
+            variant="light"
+            endContent
+            href={category.link}
+            label="Shop"
+          />
         </div>
       </div>
     ))
