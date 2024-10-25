@@ -6,7 +6,9 @@ import Button from '@components/common/Button.astro';
 <div class="modal-cart" data-modal="cart">
   <div class="modal-cart__wrapper">
     <div class="modal-cart__top">
-      <p class="modal-cart__info">cart (<span data-cart="count">0</span>)</p>
+      <p class="modal-cart__info">
+        cart (<span data-target="cart-total-quantity">0</span>)
+      </p>
       <button
         data-action="delete-cart-data"
         class="modal-cart__remove-btn"
@@ -46,6 +48,7 @@ import Button from '@components/common/Button.astro';
     width: 100vw;
     height: 100vh;
     top: 100%;
+    left: 0;
     display: none;
     &.active {
       display: block;

@@ -29,3 +29,12 @@ export function calculateTotalValue() {
   });
   return totalValue.toFixed(2);
 }
+
+export function calculateTotalQuantity() {
+  const cart = getCartFromLocalStorage();
+  let totalQuantity = 0;
+  cart.forEach((item) => {
+    totalQuantity += item.quantity;
+  });
+  return totalQuantity;
+}

@@ -1,20 +1,20 @@
 import { getCartFromLocalStorage, saveCartToLocalStorage } from "./cartStorage";
-import { updateProductQuantity, calculateTotalValue } from "./cartOperations";
+import {
+  updateProductQuantity,
+  calculateTotalValue,
+  calculateTotalQuantity,
+} from "./cartOperations";
 
 export function updateModalContent() {
   const cart = getCartFromLocalStorage();
   const modalCart = document.querySelector('[data-modal="cart"]');
   const productContainer = modalCart.querySelector('[data-cart="products"]');
-  const cartCountElement = modalCart.querySelector('[data-cart="count"]');
 
   productContainer.innerHTML = "";
 
   if (cart.length === 0) {
-    productContainer.innerHTML = "<p>Your cart is empty.</p>";
-    cartCountElement.textContent = "0";
+    productContainer.innerHTML = `<p class="empty-message">Your cart is empty.</p>`;
   } else {
-    cartCountElement.textContent = cart.length;
-
     // Renderizar cada producto
     cart.forEach((item) => {
       const itemElement = document.createElement("div");
@@ -59,12 +59,14 @@ export function updateModalContent() {
         quantityInput.stepDown();
         updateProductQuantity(item.id, parseInt(quantityInput.value, 10));
         renderTotalValue();
+        renderTotalQuantity();
       });
 
       plusButton.addEventListener("click", () => {
         quantityInput.stepUp();
         updateProductQuantity(item.id, parseInt(quantityInput.value, 10));
         renderTotalValue();
+        renderTotalQuantity();
       });
 
       quantityInput.addEventListener("input", () => {
@@ -76,11 +78,13 @@ export function updateModalContent() {
           quantityInput.value = 1;
           updateProductQuantity(item.id, 1);
           renderTotalValue();
+          renderTotalQuantity();
         }
       });
     });
   }
 
+  renderTotalQuantity();
   renderTotalValue();
 }
 
@@ -89,4 +93,10 @@ function renderTotalValue() {
     '[data-target="cart-total-value"]'
   );
   cartTotalValue.textContent = calculateTotalValue();
+}
+function renderTotalQuantity() {
+  const cartTotalQuantity = document.querySelector(
+    '[data-target="cart-total-quantity"]'
+  );
+  cartTotalQuantity.textContent = calculateTotalQuantity();
 }
