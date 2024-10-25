@@ -2,13 +2,24 @@
 import Button from '@components/common/Button.astro';
 import Number from '@components/form/Number.astro';
 const {
-  title = '',
-  subtitle = '',
-  body = '',
-  imgRef = [''],
+  productId,
+  productName,
+  title,
+  subtitle,
+  body,
+  imgRef,
   newProductTag = false,
-  price = 0,
-} = Astro.props;
+  price,
+} = Astro.props as {
+  productId: string;
+  productName: string;
+  title: string;
+  subtitle: string;
+  body: string;
+  imgRef: string[];
+  newProductTag: boolean;
+  price: number;
+};
 ---
 
 <section class="main-padding secondary-margin-bottom product-shop">
@@ -24,10 +35,14 @@ const {
     <h2 class="product-shop__title">{title}<br />{subtitle}</h2>
     <p class="product-shop__body">{body}</p>
     <p class="product-shop__price">${price}</p>
-    <div class="product-shop__cart">
+    <form
+      class="form-cart product-shop__cart"
+      data-product-id={productId}
+      data-product-name={productName}
+      data-product-price={price}>
       <Number />
-      <Button label="add to cart" variant="accent" />
-    </div>
+      <Button label="add to cart" variant="accent" type="submit" />
+    </form>
   </div>
 </section>
 
@@ -148,3 +163,25 @@ const {
     }
   }
 </style>
+<script>
+  import { addToCart } from '@/lib/cartOperations';
+  import { formatPriceInput } from '@/lib/utils';
+
+  document.querySelectorAll('.form-cart').forEach((form: HTMLFormElement) => {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const inputNumber: HTMLInputElement =
+        form.querySelector('input[type=number]');
+      const productId = form.dataset.productId;
+      const productName = form.dataset.productName;
+      const productPrice = formatPriceInput(form.dataset.productPrice);
+      const productQuantity = parseFloat(inputNumber.value);
+      addToCart({
+        id: productId,
+        name: productName,
+        price: productPrice,
+        quantity: productQuantity,
+      });
+    });
+  });
+</script>

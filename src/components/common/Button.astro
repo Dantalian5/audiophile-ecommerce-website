@@ -4,10 +4,12 @@ const {
   label = 'button',
   endContent = false,
   href = null,
+  size = 'sm',
+  ...props
 } = Astro.props;
 ---
 {
-  href ? (<a href={href} class=`button ${variant}`>
+  href ? (<a href={href} class=`button ${variant} ${size}`>
   <p class="button__text">{label}</p>
   {
     endContent && (
@@ -27,7 +29,7 @@ const {
       </svg>
     )
   }
-</a>) : (<button class=`button ${variant}`>
+</a>) : (<button class=`button ${variant} ${size}` {...props}>
   <p class="button__text">{label}</p>
   {
     endContent && (
@@ -52,8 +54,7 @@ const {
 
 <style lang="scss">
   .button {
-    padding: 1rem 2rem;
-    width: fit-content;
+    padding: 1rem 2rem;    
     border: 1px solid transparent;
     cursor: pointer;
     font-size: 0.8125rem;
@@ -72,8 +73,13 @@ const {
     &__icon {
       color: var(--accent);
     }
-  }
-  .bordered {
+    &.sm{
+      width: fit-content;
+    }
+    &.lg{
+      width: 100%;
+    }
+    &.bordered {
     background-color: transparent;
     border-color: var(--background-dark);
     color: var(--foreground-dark);
@@ -82,7 +88,7 @@ const {
       color: var(--foreground-light);
     }
   }
-  .flat {
+  &.flat {
     background-color: var(--background-dark);
     border-color: var(--background-dark);
     color: var(--foreground-light);
@@ -91,7 +97,7 @@ const {
       border-color: #4c4c4c;
     }
   }
-  .accent {
+    &.accent {
     background-color: var(--accent);
     border-color: var(--accent);
     color: var(--foreground-light);
@@ -99,7 +105,7 @@ const {
       opacity: 0.9;
     }
   }
-  .light {
+    &.light {
     padding: 0;
     background-color: transparent;
     color: var(--foreground-dark);
@@ -113,4 +119,6 @@ const {
       }
     }
   }
+  }
+  
 </style>

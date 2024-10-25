@@ -1,8 +1,8 @@
 ---
-const { id } = Astro.props;
+const { size = 'lg' } = Astro.props as { size: 'sm' | 'lg' };
 ---
 
-<div id="id" class="number">
+<div class={`${size} number`}>
   <button type="button" class="number__btn minus-button">-</button>
   <input
     id="inputNumber"
@@ -19,11 +19,22 @@ const { id } = Astro.props;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    gap: 0.25rem;
     border: 1px solid transparent;
     width: fit-content;
-    gap: 0.25rem;
     background: var(--secondary-ghost);
+    &.sm {
+      padding: 0.5rem 0.75rem;
+      & > .number__input {
+        width: 2rem;
+      }
+    }
+    &.lg {
+      padding: 1rem;
+      & > .number__input {
+        width: 3rem;
+      }
+    }
     &__input {
       -moz-appearance: textfield;
       &::-webkit-inner-spin-button,
@@ -40,7 +51,6 @@ const { id } = Astro.props;
       letter-spacing: 1px;
       text-transform: uppercase;
       border: none;
-      width: 3rem;
       background: none;
     }
     &__btn {
