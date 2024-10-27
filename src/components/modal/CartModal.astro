@@ -39,7 +39,9 @@ import Button from '@components/common/Button.astro';
         $<span data-target="cart-total-value"></span>
       </p>
     </div>
-    <div class="modal-cart__check"><Button size="lg" label="checkout" /></div>
+    <div class="modal-cart__check">
+      <Button size="lg" label="checkout" href="/cart/checkout" />
+    </div>
   </div>
 </div>
 <style lang="scss">

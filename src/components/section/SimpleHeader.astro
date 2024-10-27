@@ -1,0 +1,28 @@
+---
+import GoBack from '@components/common/GoBack.astro';
+
+const { title } = Astro.props;
+---
+
+<header class="main-padding header">
+  <GoBack />
+  <h1 class="header__title">{title}</h1>
+</header>
+<style lang="scss">
+  .header {
+    margin-block: 1rem 1.5rem;
+    &__title {
+      display: none;
+    }
+  }
+  @media screen and (min-width: 43.75rem) {
+    .header {
+      margin-top: 2rem;
+    }
+  }
+  @media screen and (min-width: 62.5rem) {
+    .header {
+      margin-block: 5rem 2.75rem;
+    }
+  }
+</style>

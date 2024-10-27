@@ -1,25 +1,18 @@
 ---
-import Layout from '@layouts/MainLayout.astro';
-import GoBack from '@components/common/GoBack.astro';
+import Layout from '@layouts/BaseLayout.astro';
+import SimpleHeader from '@components/section/SimpleHeader.astro';
+import Navigation from '@components/Navigation.astro';
+import AboutSection from '@components/AboutSection.astro';
+
+const { title } = Astro.props;
 ---
 
-<Layout title="audiophile | by MV">
-  <header class="main-padding header">
-    <GoBack />
-  </header>
+<Layout title={title}>
+  <SimpleHeader />
   <article class="main-margin-bottom">
     <slot name="main" />
   </article>
   <slot />
+  <Navigation />
+  <AboutSection />
 </Layout>
-
-<style lang="scss">
-  .header {
-    margin-block: 1rem 1.5rem;
-  }
-  @media screen and (min-width: 43.75rem) {
-    .header {
-      margin-top: 2rem;
-    }
-  }
-</style>

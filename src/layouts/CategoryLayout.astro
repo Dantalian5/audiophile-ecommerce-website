@@ -1,16 +1,21 @@
 ---
-import Layout from '@layouts/MainLayout.astro';
+import Layout from '@layouts/BaseLayout.astro';
 
-const { category } = Astro.props;
+import Navigation from '@components/Navigation.astro';
+import AboutSection from '@components/AboutSection.astro';
+
+const { title, category } = Astro.props;
 ---
 
-<Layout title="audiophile | by MV">
+<Layout title={title}>
   <header class="header animation-retractil">
     <h1 class="header__title">{category}</h1>
   </header>
   <main class="main-padding main-margin-bottom products">
     <slot />
   </main>
+  <Navigation />
+  <AboutSection />
 </Layout>
 
 <style lang="scss">
