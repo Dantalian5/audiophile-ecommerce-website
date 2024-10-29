@@ -1,0 +1,235 @@
+---
+import Layout from '@layouts/BaseLayout.astro';
+import SimpleHeader from '@components/section/SimpleHeader.astro';
+import Input from '@/components/form/Input.astro';
+import Radio from '@/components/form/Radio.astro';
+import Button from '@/components/common/Button.astro';
+---
+
+<Layout title="Checkout | audiophile">
+  <SimpleHeader />
+  <main class="main-padding main-margin-bottom checkout--wraper">
+    <form id="checkout-form" class="checkout__form" action="">
+      <h2 class="checkout__title">Checkout</h2>
+      <div class="checkout__section">
+        <h3 class="checkout__section__title">Billing Details</h3>
+        <div class="checkout__section__wrapper">
+          <Input label="Name" type="text" placeholder="Alexei Ward" />
+          <Input
+            label="Email Address"
+            type="email"
+            placeholder="alexei@mail.com"
+          />
+          <Input
+            label="Phone Number"
+            type="tel"
+            placeholder="+1 202-555-0136"
+          />
+        </div>
+      </div>
+      <div class="checkout__section">
+        <h3 class="checkout__section__title">shipping info</h3>
+        <div class="checkout__section__wrapper">
+          <div class="checkout__section--wide-item">
+            <Input
+              label="Address"
+              type="text"
+              placeholder="1137 Williams Avenue"
+            />
+          </div>
+
+          <Input label="ZIP Code" type="text" placeholder="10001" />
+          <Input label="City" type="text" placeholder="New York" />
+          <Input label="Country" type="text" placeholder="United States" />
+        </div>
+      </div>
+      <div class="checkout__section">
+        <h3 class="checkout__section__title">payment details</h3>
+        <fieldset class="checkout__section__wrapper">
+          <span class="checkout__section__subtitle">Payment Method</span>
+          <Radio label="e-Money" value="emoney" name="payment-method" />
+          <span></span>
+          <Radio label="Cash on Delivery" value="cash" name="payment-method" />
+        </fieldset>
+        <div class="checkout__section__wrapper checkout__section__epay">
+          <Input label="e-Money Number" type="text" placeholder="238521993" />
+          <Input label="e-Money PIN" type="text" placeholder="6891" />
+        </div>
+      </div>
+    </form>
+    <div class="checkout__summary">
+      <h2 class="checkout__summary__title">summary</h2>
+      <div class="checkout__summary__products" data-target="checkout-cart">
+      </div>
+      <p class="checkout__summary__info">
+        <span class="checkout__summary__info--text">Total</span>
+        <span class="checkout__summary__info--data">444</span>
+      </p>
+      <p class="checkout__summary__info">
+        <span class="checkout__summary__info--text">SHIPPING</span>
+        <span class="checkout__summary__info--data">444</span>
+      </p>
+      <p class="checkout__summary__info">
+        <span class="checkout__summary__info--text">VAT (INCLUDED)</span>
+        <span class="checkout__summary__info--data">444</span>
+      </p>
+      <p class="checkout__summary__info">
+        <span class="checkout__summary__info--text">GRAND TOTAL</span>
+        <span class="checkout__summary__info--data">444</span>
+      </p>
+      <!-- <div class="modal-cart__check">
+        <Button size="lg" label="checkout" href="/cart/checkout" />
+      </div> -->
+    </div>
+  </main>
+</Layout>
+<style lang="scss">
+  .checkout--wraper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1.875rem;
+    flex-wrap: wrap;
+  }
+  .checkout {
+    &__form {
+      border-radius: 8px;
+      background: var(--foreground-light);
+      padding: 3.375rem 3rem;
+      flex: 1 1 37.5rem;
+    }
+    &__title {
+      color: var(--foreground-dark);
+      font-size: 2rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1.12; /* 112.5% */
+      letter-spacing: 0.0714rem;
+      text-transform: uppercase;
+      margin-bottom: 2.625rem;
+    }
+    &__section {
+      &:not(:last-child) {
+        margin-bottom: 3.375rem;
+      }
+      &__title {
+        color: var(--accent);
+        font-size: 0.8125rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 1.92; /* 192.308% */
+        letter-spacing: 0.0581rem;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+      &__subtitle {
+        color: var(--foreground-dark);
+        font-size: 0.75rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: -0.0134rem;
+      }
+      &__wrapper {
+        display: grid;
+        gap: 1.5rem 1rem;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      &--wide-item {
+        grid-column: 1 / -1;
+      }
+      &__epay {
+        margin-top: 1.5rem;
+      }
+    }
+    &__summary {
+      border-radius: 8px;
+      background: var(--foreground-light);
+      padding: 2rem;
+      flex: 1 1 18.75rem;
+      max-width: 21.875rem;
+      &__title {
+        color: var(--foreground-dark);
+        font-size: 1.125rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 0.0804rem;
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+      }
+      &__products {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      &__info {
+        color: var(--foreground-dark);
+        font-style: normal;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        &--text {
+          font-size: 0.9375rem;
+          font-weight: 400;
+          line-height: 1.66; /* 166.667% */
+          opacity: 0.5;
+        }
+        &--data {
+          text-align: right;
+          font-size: 1.125rem;
+          font-weight: 700;
+          line-height: normal;
+        }
+      }
+    }
+  }
+</style>
+<script>
+  import { getCartFromLocalStorage } from '@/lib/cartStorage';
+  import { calculateTotalValue } from '@/lib/cartOperations';
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const cart = getCartFromLocalStorage();
+    const productContainer = document.querySelector(
+      '[data-target="checkout-cart"]'
+    );
+
+    productContainer.innerHTML = '';
+    console.log(productContainer, cart);
+    if (cart.length === 0) {
+      productContainer.innerHTML = `<p class="empty-message">Your cart is empty.</p>`;
+    } else {
+      // Renderizar cada producto
+      cart.forEach((item) => {
+        const itemElement = document.createElement('div');
+        itemElement.classList.add('cart-item');
+        itemElement.innerHTML = `
+        <div class="cart-item__img">
+          <img src="/assets/cart/image-${
+            item.id
+          }-headphones.jpg" alt="product image" />
+        </div>
+        <div class="cart-item__specs">
+          <h3 class="cart-item__title"><span>${item.name}</span></h3>
+          <p class="cart-item__price">$<span>${item.price.toFixed(2)}</span></p>
+        </div>
+        <p class="cart-item__quantity">x<span>${item.quantity}</span></p>
+      `;
+        productContainer.appendChild(itemElement);
+      });
+    }
+
+    //renderTotalValue();
+  });
+
+  function renderTotalValue() {
+    const cartTotalValue = document.querySelector(
+      '[data-target="cart-total-value"]'
+    );
+    cartTotalValue.textContent = calculateTotalValue();
+  }
+</script>
