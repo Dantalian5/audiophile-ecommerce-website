@@ -1,14 +1,15 @@
 ---
-const {
-  label = 'Label',
-  isValid = true,
-  name = '',
-  value = 'label',
-} = Astro.props;
+const { label = 'Label', name = '', value = 'label', ...props } = Astro.props;
 ---
 
 <label class="radio">
-  <input class="radio__input" type="radio" value={value} name={name} />
+  <input
+    class="radio__input"
+    type="radio"
+    value={value}
+    name={name}
+    {...props}
+  />
   <span class="radio__custom"></span>
   <span class="radio__label">{label}</span>
 </label>
