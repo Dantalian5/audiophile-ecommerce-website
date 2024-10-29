@@ -1,6 +1,6 @@
-export async function checkoutProducts(cart) {
+export async function validateCart(cart) {
   try {
-    const response = await fetch("http://localhost:3000/api/checkout", {
+    const response = await fetch("http://localhost:3000/api/cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

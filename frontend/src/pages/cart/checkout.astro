@@ -306,7 +306,7 @@ import Button from '@/components/common/Button.astro';
 </style>
 <script>
   import { getCartFromLocalStorage } from '@lib/cartStorage';
-  import { checkoutProducts } from '@lib/checkoutOperations';
+  import { validateCart } from '@lib/checkoutOperations';
   import { formatPriceOutput } from '@lib/utils';
 
   document.addEventListener('DOMContentLoaded', async function () {
@@ -322,7 +322,7 @@ import Button from '@/components/common/Button.astro';
       const selectedProduct = cart.map((product) => {
         return { code: product.id, quantity: product.quantity };
       });
-      const data = await checkoutProducts(selectedProduct);
+      const data = await validateCart(selectedProduct);
       // Render every product
       data.products.forEach((item) => {
         const itemElement = document.createElement('div');
