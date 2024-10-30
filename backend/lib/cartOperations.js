@@ -14,7 +14,6 @@ export function createCart(items) {
       return null;
     })
     .filter((product) => product !== null);
-
   const subtotal = selectedProducts.reduce(
     (sum, product) => sum + product.totalPrice,
     0
