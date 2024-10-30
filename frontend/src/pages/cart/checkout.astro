@@ -4,6 +4,7 @@ import SimpleHeader from '@components/section/SimpleHeader.astro';
 import Input from '@/components/form/Input.astro';
 import Radio from '@/components/form/Radio.astro';
 import Button from '@/components/common/Button.astro';
+import CheckoutModal from '@/components/modal/CheckoutModal.astro';
 ---
 
 <Layout title="Checkout | audiophile">
@@ -26,12 +27,14 @@ import Button from '@/components/common/Button.astro';
             label="Email Address"
             type="email"
             placeholder="alexei@mail.com"
+            value="Jhon@test.com"
           />
           <Input
             name="phone"
             label="Phone Number"
             type="tel"
             placeholder="+1 202-555-0136"
+            value="+01 202-555-0136"
           />
         </div>
       </div>
@@ -44,16 +47,30 @@ import Button from '@/components/common/Button.astro';
               label="Address"
               type="text"
               placeholder="1137 Williams Avenue"
+              value="1137 Williams Avenue"
             />
           </div>
 
-          <Input name="zip" label="ZIP Code" type="text" placeholder="10001" />
-          <Input name="city" label="City" type="text" placeholder="New York" />
+          <Input
+            name="zip"
+            label="ZIP Code"
+            type="text"
+            placeholder="10001"
+            value="10001"
+          />
+          <Input
+            name="city"
+            label="City"
+            type="text"
+            placeholder="New York"
+            value="New York"
+          />
           <Input
             name="country"
             label="Country"
             type="text"
             placeholder="United States"
+            value="USA"
           />
         </div>
       </div>
@@ -63,24 +80,26 @@ import Button from '@/components/common/Button.astro';
           class="billing__section__wrapper"
           data-action="show-emoney-form">
           <span class="billing__section__subtitle">Payment Method</span>
-          <Radio label="e-Money" value="emoney" name="payment-method" checked />
+          <Radio label="e-Money" value="emoney" name="paymentMethod" checked />
           <span></span>
-          <Radio label="Cash on Delivery" value="cash" name="payment-method" />
+          <Radio label="Cash on Delivery" value="cash" name="paymentMethod" />
         </fieldset>
         <div
           class="billing__section__wrapper billing__section__epay active"
           data-target="emoney-form">
           <Input
-            name="emoney-number"
+            name="emoneyNumber"
             label="e-Money Number"
             type="text"
             placeholder="238521993"
+            value="238521993"
           />
           <Input
-            name="emoney-pin"
+            name="emoneyPin"
             label="e-Money PIN"
             type="text"
             placeholder="6891"
+            value="6891"
           />
         </div>
         <div class="billing__section__cash" data-target="cash-form">
@@ -139,13 +158,14 @@ import Button from '@/components/common/Button.astro';
       <div class="modal-cart__check">
         <Button
           size="lg"
-          label="continue"
+          label="continue & pay"
           data-action="submit-checkout"
           type="button"
         />
       </div>
     </div>
   </main>
+  <CheckoutModal />
 </Layout>
 <style lang="scss">
   .checkout {
@@ -306,7 +326,8 @@ import Button from '@/components/common/Button.astro';
 </style>
 <script>
   import { getCartFromLocalStorage } from '@lib/cartStorage';
-  import { validateCart } from '@lib/checkoutOperations';
+  import { validateCart, checkoutCart } from '@lib/checkoutOperations';
+  import { renderItem } from '@lib/cartUI';
   import { formatPriceOutput } from '@lib/utils';
 
   document.addEventListener('DOMContentLoaded', async function () {
@@ -325,20 +346,7 @@ import Button from '@/components/common/Button.astro';
       const data = await validateCart(selectedProduct);
       // Render every product
       data.products.forEach((item) => {
-        const itemElement = document.createElement('div');
-        itemElement.classList.add('cart-item');
-        itemElement.innerHTML = `
-        <div class="cart-item__img">
-          <img src="/assets/cart/image-${
-            item.code
-          }-headphones.jpg" alt="product image" />
-        </div>
-        <div class="cart-item__specs">
-          <h3 class="cart-item__title"><span>${item.nickname}</span></h3>
-          <p class="cart-item__price">$ <span>${formatPriceOutput(item.price)}</span></p>
-        </div>
-        <p class="cart-item__quantity">x<span>${item.quantity}</span></p>
-      `;
+        const itemElement = renderItem(item);
         productContainer.appendChild(itemElement);
       });
       document.querySelector('[data-target="checkout-total"]').textContent =
@@ -361,17 +369,36 @@ import Button from '@/components/common/Button.astro';
         .dispatchEvent(new Event('submit'));
     });
 
-  document.getElementById('checkout-form').addEventListener('submit', (e) => {
-    e.preventDefault();
+  document
+    .getElementById('checkout-form')
+    .addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-    const form = e.target;
-    const formData = new FormData(form);
-    const formObject = Object.fromEntries(formData.entries());
+      const form = e.target;
+      const formData = new FormData(form);
+      const billing = Object.fromEntries(formData.entries());
+      const cart = getCartFromLocalStorage();
+      const selectedProduct = cart.map((product) => {
+        return { code: product.id, quantity: product.quantity };
+      });
+      const data = await checkoutCart(billing, selectedProduct);
 
-    console.log('Datos del formulario:', formObject);
+      const modal = document.querySelector('[data-target="modal-checkout"]');
+      modal.classList.add('active');
+      const modalProducts = modal.querySelector(
+        '[data-target="modal-checkout-products"]'
+      );
+      const modalPrice = modal.querySelector(
+        '[data-target="modal-checkout-price"]'
+      );
 
-    // Aquí puedes hacer una solicitud AJAX si necesitas enviar los datos sin recargar la página
-  });
+      console.log(data);
+      data.cart.products.forEach((item) => {
+        const itemElement = renderItem(item);
+        modalProducts.appendChild(itemElement);
+      });
+      modalPrice.textContent = `$ ${formatPriceOutput(data.cart.total)}`;
+    });
 
   document
     .querySelector('[data-action="show-emoney-form"]')

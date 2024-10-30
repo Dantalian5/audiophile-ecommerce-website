@@ -3,7 +3,7 @@ import Button from '@components/common/Button.astro';
 import Number from '@components/form/Number.astro';
 const {
   productId,
-  productName,
+  productNickname,
   title,
   subtitle,
   body,
@@ -12,7 +12,7 @@ const {
   price,
 } = Astro.props as {
   productId: string;
-  productName: string;
+  productNickname: string;
   title: string;
   subtitle: string;
   body: string;
@@ -38,7 +38,7 @@ const {
     <form
       class="form-cart product-shop__cart"
       data-product-id={productId}
-      data-product-name={productName}
+      data-product-nickname={productNickname}
       data-product-price={price}>
       <Number />
       <Button label="add to cart" variant="accent" type="submit" />
@@ -173,12 +173,14 @@ const {
       const inputNumber: HTMLInputElement =
         form.querySelector('input[type=number]');
       const productId = form.dataset.productId;
-      const productName = form.dataset.productName;
+      const productNickname = form.dataset.productNickname;
       const productPrice = formatPriceInput(form.dataset.productPrice);
       const productQuantity = parseFloat(inputNumber.value);
+
       addToCart({
         id: productId,
-        name: productName,
+        code: productId,
+        nickname: productNickname,
         price: productPrice,
         quantity: productQuantity,
       });

@@ -16,5 +16,28 @@ export async function validateCart(cart) {
     return data;
   } catch (error) {
     console.error("Error al procesar el checkout:", error);
+    return [];
+  }
+}
+
+export async function checkoutCart(billing, cart) {
+  try {
+    const response = await fetch("http://localhost:3000/api/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...billing, cart }),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      return result;
+    } else {
+      console.error("Checkout failed:", result.errors || result);
+    }
+  } catch (error) {
+    console.error("Error sending data to the API:", error);
   }
 }

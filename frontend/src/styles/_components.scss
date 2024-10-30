@@ -117,3 +117,9 @@
   line-height: 1.5;
   text-transform: uppercase;
 }
+.modal {
+  display: none;
+  &.active {
+    display: flex;
+  }
+}

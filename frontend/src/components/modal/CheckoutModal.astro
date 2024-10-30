@@ -1,0 +1,172 @@
+---
+import Button from '@components/common/Button.astro';
+---
+
+<div class="modal modal-checkout" data-target="modal-checkout">
+  <div class="modal-checkout__wrapper">
+    <span class="modal-checkout__icon">
+      <svg
+        width="1em"
+        height="1em"
+        viewBox="0 0 64 64"
+        xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" fill-rule="evenodd">
+          <circle fill="#D87D4A" cx="32" cy="32" r="32"></circle><path
+            stroke="#FFF"
+            stroke-width="4"
+            d="m20.754 33.333 6.751 6.751 15.804-15.803">
+          </path>
+        </g>
+      </svg>
+    </span>
+    <p class="modal-checkout__title">THANK YOU <br /> FOR YOUR ORDER</p>
+    <p class="modal-checkout__subtitle">
+      You will receive an email confirmation shortly.
+    </p>
+    <div class="modal-checkout__summary">
+      <div class="modal-checkout__left">
+        <div
+          class="modal-checkout__products"
+          data-target="modal-checkout-products">
+        </div>
+      </div>
+      <div class="modal-checkout__right">
+        <p class="modal-checkout__summary__gt">GRAND TOTAL</p>
+        <p
+          class="modal-checkout__summary__price"
+          data-target="modal-checkout-price">
+          $ 0
+        </p>
+      </div>
+    </div>
+    <Button size="lg" label="back to home" href="/" />
+  </div>
+</div>
+<style lang="scss">
+  .modal-checkout {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 500;
+    align-items: center;
+    justify-content: center;
+    &::before {
+      content: '';
+      z-index: -1;
+      position: absolute;
+      inset: 0;
+      opacity: 0.4;
+      background-color: var(--foreground-dark);
+    }
+    &__wrapper {
+      width: 80%;
+      max-width: 33.75rem;
+      border-radius: 8px;
+      background: var(--foreground-light);
+      z-index: 500;
+      padding: 3rem;
+    }
+    &__icon {
+      display: block;
+      width: fit-content;
+      margin-bottom: 2rem;
+      font-size: 4rem;
+    }
+    &__title {
+      color: var(--foreground-dark);
+      font-size: 2rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1.12;
+      margin-bottom: 2rem;
+      letter-spacing: 0.0714rem;
+      text-transform: uppercase;
+    }
+    &__subtitle {
+      color: var(--foreground-dark);
+      font-size: 0.9375rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1.66;
+      margin-bottom: 2rem;
+      opacity: 0.5;
+    }
+    &__summary {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      margin-bottom: 3rem;
+      border-radius: 8px;
+      background: #f1f1f1;
+      overflow: hidden;
+
+      &__gt {
+        color: var(--foreground-light);
+        font-size: 0.9375rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.66; /* 166.667% */
+        opacity: 0.5;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      &__price {
+        color: var(--foreground-light);
+        font-size: 1.125rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+    }
+    &__left {
+      flex: 1 1 50%;
+      position: relative;
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 1rem;
+        pointer-events: none;
+        z-index: 999999;
+      }
+      &::after {
+        bottom: 0;
+        background: linear-gradient(
+          to top,
+          rgba(255, 255, 255, 0.6),
+          transparent
+        );
+      }
+      &::before {
+        top: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.6),
+          transparent
+        );
+      }
+    }
+    &__products {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      max-height: 12.5rem;
+      overflow: scroll;
+      padding: 1.5rem;
+      gap: 1rem;
+    }
+    &__right {
+      flex: 1 1 40%;
+      padding: 2.5rem 2rem;
+      background-color: var(--foreground-dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+  }
+</style>
