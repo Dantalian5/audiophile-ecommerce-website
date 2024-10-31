@@ -9,42 +9,40 @@ const { imgRef } = Astro.props as { imgRef: imgRefProp };
 ---
 
 <section class="main-padding secondary-margin-bottom photo-gallery">
-  <div class="photo-gallery__left">
-    <div class="photo-gallery__top">
-      <picture>
-        {
-          imgRef.top[2] && (
-            <source srcset={imgRef.top[2]} media="(min-width: 75rem)" />
-          )
-        }
-        {
-          imgRef.top[1] && (
-            <source srcset={imgRef.top[1]} media="(min-width: 43.75rem)" />
-          )
-        }
-        <img class="photo-gallery__img" src={imgRef.top[0]} alt={'gallery'} />
-      </picture>
-    </div>
-    <div class="photo-gallery__bottom">
-      <picture>
-        {
-          imgRef.bottom[2] && (
-            <source srcset={imgRef.bottom[2]} media="(min-width: 75rem)" />
-          )
-        }
-        {
-          imgRef.bottom[1] && (
-            <source srcset={imgRef.bottom[1]} media="(min-width: 43.75rem)" />
-          )
-        }
-        <img
-          class="photo-gallery__img"
-          src={imgRef.bottom[0]}
-          alt={'gallery'}
-        />
-      </picture>
-    </div>
-  </div>
+  <picture>
+    {
+      imgRef.top[2] && (
+        <source srcset={imgRef.top[2]} media="(min-width: 75rem)" />
+      )
+    }
+    {
+      imgRef.top[1] && (
+        <source srcset={imgRef.top[1]} media="(min-width: 43.75rem)" />
+      )
+    }
+    <img
+      class="photo-gallery__img photo-gallery__top"
+      src={imgRef.top[0]}
+      alt={'gallery'}
+    />
+  </picture>
+  <picture>
+    {
+      imgRef.bottom[2] && (
+        <source srcset={imgRef.bottom[2]} media="(min-width: 75rem)" />
+      )
+    }
+    {
+      imgRef.bottom[1] && (
+        <source srcset={imgRef.bottom[1]} media="(min-width: 43.75rem)" />
+      )
+    }
+    <img
+      class="photo-gallery__img photo-gallery__bottom"
+      src={imgRef.bottom[0]}
+      alt={'gallery'}
+    />
+  </picture>
   <div class="photo-gallery__right">
     <picture>
       {
@@ -63,21 +61,11 @@ const { imgRef } = Astro.props as { imgRef: imgRefProp };
 </section>
 <style lang="scss">
   .photo-gallery {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 1rem;
-    align-items: stretch;
-    &__left,
-    &__right {
-      flex: 1 1 auto;
-      align-items: stretch;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 1rem;
-    }
     &__img {
       width: 100%;
+      height: 100%;
       border-radius: 8px;
       object-fit: cover;
       object-position: center center;
@@ -85,22 +73,19 @@ const { imgRef } = Astro.props as { imgRef: imgRefProp };
   }
   @media screen and (min-width: 43.75rem) {
     .photo-gallery {
-      flex-direction: row;
-      &__left {
-        flex-basis: 17.3125rem;
+      grid-template-areas:
+        'top right'
+        'bottom right';
+      grid-template-rows: repeat(2, 1fr);
+      grid-template-columns: 7fr 10fr;
+      &__top {
+        grid-area: top;
+      }
+      &__bottom {
+        grid-area: bottom;
       }
       &__right {
-        flex-basis: 24.6875rem;
-      }
-    }
-  }
-  @media screen and (min-width: 62.5rem) {
-    .photo-gallery {
-      &__left {
-        flex-basis: 27.8125rem;
-      }
-      &__right {
-        flex-basis: 39.6875rem;
+        grid-area: right;
       }
     }
   }
