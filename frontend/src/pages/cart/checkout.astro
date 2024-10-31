@@ -178,17 +178,17 @@ import CheckoutModal from '@/components/modal/CheckoutModal.astro';
   .billing {
     border-radius: 8px;
     background: var(--foreground-light);
-    padding: 3.375rem 3rem;
+    padding: 1.5rem;
     flex: 1 1 37.5rem;
     &__title {
       color: var(--foreground-dark);
-      font-size: 2rem;
+      font-size: 1.75rem;
       font-style: normal;
       font-weight: 700;
-      line-height: 1.12; /* 112.5% */
-      letter-spacing: 0.0714rem;
+      line-height: 1.2;
+      letter-spacing: 0.0625rem;
       text-transform: uppercase;
-      margin-bottom: 2.625rem;
+      margin-bottom: 2rem;
     }
     &__section {
       &:not(:last-child) {
@@ -262,7 +262,6 @@ import CheckoutModal from '@/components/modal/CheckoutModal.astro';
     background: var(--foreground-light);
     padding: 2rem;
     flex: 1 1 18.75rem;
-    max-width: 21.875rem;
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -314,8 +313,15 @@ import CheckoutModal from '@/components/modal/CheckoutModal.astro';
       }
     }
   }
-  @media screen and (min-width: 700px) {
+  @media screen and (min-width: 43.75rem) {
     .billing {
+      padding: 3.375rem 3rem;
+      &__title {
+        font-size: 2rem;
+        line-height: 1.12; /* 112.5% */
+        letter-spacing: 0.0714rem;
+        margin-bottom: 2.625rem;
+      }
       &__section {
         &__wrapper {
           grid-template-columns: repeat(2, 1fr);
@@ -391,12 +397,19 @@ import CheckoutModal from '@/components/modal/CheckoutModal.astro';
       const modalPrice = modal.querySelector(
         '[data-target="modal-checkout-price"]'
       );
+      const modalItems = modal.querySelector(
+        '[data-target="show-more-items-number"]'
+      );
 
       console.log(data);
-      data.cart.products.forEach((item) => {
+      data.cart.products.forEach((item, index) => {
         const itemElement = renderItem(item);
+        itemElement.classList.add('show-only-first');
+
+        itemElement.setAttribute('data-target', 'dynamic-item');
         modalProducts.appendChild(itemElement);
       });
+      modalItems.textContent = (data.cart.products.length - 1).toString();
       modalPrice.textContent = `$ ${formatPriceOutput(data.cart.total)}`;
     });
 

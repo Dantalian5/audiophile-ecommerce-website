@@ -2,8 +2,8 @@
 import Button from '@components/common/Button.astro';
 ---
 
-<div class="modal modal-checkout" data-target="modal-checkout">
-  <div class="modal-checkout__wrapper">
+<div class="modal modal-checkout main-padding" data-target="modal-checkout">
+  <div class="modal__wrapper modal__wrapper--center modal-checkout__wrapper">
     <span class="modal-checkout__icon">
       <svg
         width="1em"
@@ -29,6 +29,13 @@ import Button from '@components/common/Button.astro';
           class="modal-checkout__products"
           data-target="modal-checkout-products">
         </div>
+        <div class="modal-checkout__show-more">
+          <button
+            class="modal-checkout__show-more__btn"
+            data-action="show-more-items">
+            and <span data-target="show-more-items-number"></span> more items
+          </button>
+        </div>
       </div>
       <div class="modal-checkout__right">
         <p class="modal-checkout__summary__gt">GRAND TOTAL</p>
@@ -44,29 +51,14 @@ import Button from '@components/common/Button.astro';
 </div>
 <style lang="scss">
   .modal-checkout {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    z-index: 500;
-    align-items: center;
-    justify-content: center;
-    &::before {
-      content: '';
-      z-index: -1;
-      position: absolute;
-      inset: 0;
-      opacity: 0.4;
-      background-color: var(--foreground-dark);
-    }
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+
     &__wrapper {
-      width: 80%;
       max-width: 33.75rem;
       border-radius: 8px;
       background: var(--foreground-light);
-      z-index: 500;
-      padding: 3rem;
+      padding: 2rem;
     }
     &__icon {
       display: block;
@@ -76,12 +68,12 @@ import Button from '@components/common/Button.astro';
     }
     &__title {
       color: var(--foreground-dark);
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-style: normal;
       font-weight: 700;
-      line-height: 1.12;
-      margin-bottom: 2rem;
-      letter-spacing: 0.0714rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      letter-spacing: 0.0536rem;
       text-transform: uppercase;
     }
     &__subtitle {
@@ -90,18 +82,18 @@ import Button from '@components/common/Button.astro';
       font-style: normal;
       font-weight: 400;
       line-height: 1.66;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       opacity: 0.5;
     }
     &__summary {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      align-items: stretch;
       margin-bottom: 3rem;
       border-radius: 8px;
       background: #f1f1f1;
+      width: 100%;
       overflow: hidden;
-
       &__gt {
         color: var(--foreground-light);
         font-size: 0.9375rem;
@@ -111,6 +103,7 @@ import Button from '@components/common/Button.astro';
         opacity: 0.5;
         text-transform: uppercase;
         margin-bottom: 8px;
+        margin-top: auto;
       }
       &__price {
         color: var(--foreground-light);
@@ -122,46 +115,36 @@ import Button from '@components/common/Button.astro';
       }
     }
     &__left {
-      flex: 1 1 50%;
+      flex: 1 1 10.5rem;
       position: relative;
-      &::before,
-      &::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        width: 100%;
-        height: 1rem;
-        pointer-events: none;
-        z-index: 999999;
-      }
-      &::after {
-        bottom: 0;
-        background: linear-gradient(
-          to top,
-          rgba(255, 255, 255, 0.6),
-          transparent
-        );
-      }
-      &::before {
-        top: 0;
-        background: linear-gradient(
-          to bottom,
-          rgba(255, 255, 255, 0.6),
-          transparent
-        );
-      }
+      padding: 1.5rem;
     }
     &__products {
       display: flex;
       width: 100%;
       flex-direction: column;
-      max-height: 12.5rem;
-      overflow: scroll;
-      padding: 1.5rem;
       gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    &__show-more {
+      padding-top: 0.75rem;
+      width: 100%;
+      border-top: 1px solid var(--secondary-grey);
+      &__btn {
+        display: block;
+        color: var(--foreground-dark);
+        font-size: 0.75rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: -0.0134rem;
+        opacity: 0.5;
+        margin-inline: auto;
+        width: fit-content;
+      }
     }
     &__right {
-      flex: 1 1 40%;
+      flex: 1 1 9.25rem;
       padding: 2.5rem 2rem;
       background-color: var(--foreground-dark);
       display: flex;
@@ -169,4 +152,42 @@ import Button from '@components/common/Button.astro';
       justify-content: flex-end;
     }
   }
+  @media screen and (min-width: 43.75rem) {
+    .modal-checkout {
+      padding-top: 9.5rem;
+      padding-bottom: 6rem;
+      &__wrapper {
+        padding: 3rem;
+        margin-bottom: 2rem;
+        letter-spacing: 1.1424px;
+      }
+      &__title {
+        font-size: 2rem;
+      }
+      &__subtitle {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+  @media screen and (min-width: 75rem) {
+    .modal-checkout {
+      padding-top: 10rem;
+      padding-bottom: 6rem;
+    }
+  }
 </style>
+<script>
+  const showMoreBtn = document.querySelector(
+    'button[data-action="show-more-items"]'
+  );
+
+  showMoreBtn.addEventListener('click', () => {
+    const items = document.querySelectorAll('[data-target="dynamic-item"]');
+
+    items.forEach((item) => item.classList.toggle('show-only-first'));
+    showMoreBtn.textContent =
+      showMoreBtn.textContent === 'show less'
+        ? `and ${items.length - 1} more items`
+        : 'show less';
+  });
+</script>

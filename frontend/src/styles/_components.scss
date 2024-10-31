@@ -52,6 +52,9 @@
     margin-bottom: 2ch;
   }
 }
+.show-only-first:not(:first-child) {
+  display: none;
+}
 .input-number {
   display: flex;
   align-items: center;
@@ -119,7 +122,33 @@
 }
 .modal {
   display: none;
+  position: fixed;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  z-index: 500;
+  overflow: scroll;
+  top: 0;
+  left: 0;
   &.active {
     display: flex;
+  }
+  &::before {
+    content: "";
+    z-index: -1;
+    position: fixed;
+    inset: 0;
+    opacity: 0.4;
+    background-color: var(--foreground-dark);
+  }
+  &__wrapper {
+    width: 100%;
+    &--center {
+      margin-inline: auto;
+      margin-block: auto;
+    }
+    &--topright {
+      margin-left: auto;
+    }
   }
 }

@@ -1,6 +1,5 @@
 ---
 import CartBtn from '@components/common/CartBtn.astro';
-import CartModal from '@components/modal/CartModal.astro';
 ---
 
 <div class="main-padding navbar">
@@ -27,14 +26,14 @@ import CartModal from '@components/modal/CartModal.astro';
     <a href="/category/earphones" class="navbar__link">Earphones</a>
   </nav>
   <CartBtn />
-  <CartModal />
 </div>
 
 <style lang="scss">
   .navbar {
     width: 100%;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
