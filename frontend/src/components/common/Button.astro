@@ -67,6 +67,11 @@ const {
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
+    position: relative;
+    transition: transform 0.1s ease;
+    &:active{
+      transform: scale(0.95);
+    }     
     &__text {
       font: inherit;
     }
@@ -119,6 +124,5 @@ const {
       }
     }
   }
-  }
-  
+}
 </style>

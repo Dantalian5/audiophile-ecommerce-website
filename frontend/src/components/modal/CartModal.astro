@@ -161,6 +161,7 @@ import Button from '@components/common/Button.astro';
 <script>
   import { updateModalContent } from '@/lib/cartUI';
   import { clearCartFromLocalStorage } from '@/lib/cartStorage';
+  import { updateCartBtnIndicator } from '@/lib/cartUI';
 
   document
     .querySelector('button[data-action="delete-cart-data"]')
@@ -168,5 +169,6 @@ import Button from '@components/common/Button.astro';
       event.preventDefault();
       clearCartFromLocalStorage();
       updateModalContent();
+      updateCartBtnIndicator();
     });
 </script>

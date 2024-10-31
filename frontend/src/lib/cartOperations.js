@@ -1,4 +1,8 @@
-import { getCartFromLocalStorage, saveCartToLocalStorage } from "./cartStorage";
+import {
+  getCartFromLocalStorage,
+  saveCartToLocalStorage,
+} from "@lib/cartStorage";
+import { updateCartBtnIndicator } from "@lib/cartUI";
 
 export function addToCart(product) {
   const cart = getCartFromLocalStorage();
@@ -10,15 +14,18 @@ export function addToCart(product) {
     cart.push(product);
   }
   saveCartToLocalStorage(cart);
+  updateCartBtnIndicator();
 }
-
+//! fix this!!!!
 export function updateProductQuantity(productId, quantity) {
   const cart = getCartFromLocalStorage();
-  const productIndex = cart.findIndex((item) => item.id === productId);
-  if (productIndex > -1) {
-    cart[productIndex].quantity = quantity;
+  const existingProductIndex = cart.findIndex((item) => item.id === productId);
+
+  if (existingProductIndex > -1) {
+    cart[existingProductIndex].quantity = quantity;
     saveCartToLocalStorage(cart);
   }
+  updateCartBtnIndicator();
 }
 
 export function calculateTotalValue() {

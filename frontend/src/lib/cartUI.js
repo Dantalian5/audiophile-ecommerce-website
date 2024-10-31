@@ -115,3 +115,15 @@ export function renderItem(item, editable = false) {
 
   return itemElement;
 }
+export function updateCartBtnIndicator() {
+  const cartBtnIndicator = document.querySelector(
+    '[data-target="cart-btn-indicator"]'
+  );
+  const cartTotalQuantity = calculateTotalQuantity();
+  if (cartTotalQuantity > 0) {
+    cartBtnIndicator.style.display = "flex";
+    cartBtnIndicator.textContent = cartTotalQuantity;
+  } else {
+    cartBtnIndicator.style.display = "none";
+  }
+}
