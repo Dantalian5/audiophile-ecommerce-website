@@ -4,7 +4,7 @@ import Button from '@components/common/Button.astro';
 
 <section class="main-padding main-margin-bottom show">
   <div class="zx9">
-    <div class="zx9__img">
+    <div class="zx9__img" data-target="circle-pattern-container">
       <picture>
         <source
           srcset="/assets/home/desktop/image-speaker-zx9.png"
@@ -20,6 +20,21 @@ import Button from '@components/common/Button.astro';
           alt="a speaker image"
         />
       </picture>
+      <svg
+        class="zx9__img__pattern"
+        data-target="circle-pattern"
+        width="944"
+        height="944"
+        viewBox="0 0 944 944"
+        xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#FFF" fill="none" fill-rule="evenodd" opacity=".202">
+          <circle cx="472" cy="472" r="235.5"></circle><circle
+            cx="472"
+            cy="472"
+            r="270.5">
+          </circle><circle cx="472" cy="472" r="471.5"></circle>
+        </g>
+      </svg>
     </div>
     <div class="zx9__info">
       <h3 class="zx9__title">ZX9 <br /> SPEAKER</h3>
@@ -79,18 +94,14 @@ import Button from '@components/common/Button.astro';
         position: relative;
         z-index: 5;
       }
-      &::before {
+      &__pattern {
         z-index: 1;
         position: absolute;
-        content: '';
-        background-image: url('/assets/home/desktop/pattern-circles.svg');
-        background-repeat: no-repeat;
-        background-size: 100% auto;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -40%);
-        width: 350%;
-        height: 350%;
+        width: 558px;
+        height: 558px;
       }
     }
     &__info {
@@ -214,9 +225,10 @@ import Button from '@components/common/Button.astro';
       gap: 4rem;
       &__img {
         width: 12.375rem;
-        &::before {
-          width: 480%;
-          height: 480%;
+        &__pattern {
+          top: 55%;
+          width: 944px;
+          height: 944px;
         }
       }
       &__title {
@@ -267,9 +279,7 @@ import Button from '@components/common/Button.astro';
         bottom: -0.9375rem;
         height: 100%;
         max-width: 500px;
-        &::before {
-          width: 240%;
-          height: 240%;
+        &__pattern {
           top: 70%;
         }
       }
@@ -297,3 +307,39 @@ import Button from '@components/common/Button.astro';
     }
   }
 </style>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const svgContainer = document.querySelector(
+      '[data-target="circle-pattern-container"]'
+    );
+    const svg = document.querySelector('[data-target="circle-pattern"]');
+
+    function scaleSVG() {
+      const rect = svgContainer.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      const svgTop = rect.top;
+      const svgBottom = rect.bottom;
+
+      if (svgTop < windowHeight && svgBottom > 0) {
+        const start = windowHeight;
+        const end = windowHeight * 0.3;
+        const totalDistance = start - end;
+
+        const currentDistance = windowHeight - svgTop;
+        let progress = currentDistance / totalDistance;
+
+        const scaleValue = Math.max(0.2, Math.min(1, progress));
+
+        svg.style.transform = `translate(-50%, -50%) scale(${scaleValue})`;
+      } else {
+        svg.style.transform = `translate(-50%, -50%) scale(0)`;
+      }
+    }
+
+    // Ejecuta la función al cargar y al hacer scroll
+    scaleSVG();
+    window.addEventListener('scroll', scaleSVG);
+    window.addEventListener('resize', scaleSVG);
+  });
+</script>
