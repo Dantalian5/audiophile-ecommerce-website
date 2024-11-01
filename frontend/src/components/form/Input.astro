@@ -4,7 +4,6 @@ const {
   placeholder = '',
   type = 'text',
   name = '',
-  isValid = true,
   ...props
 } = Astro.props;
 ---
@@ -12,12 +11,15 @@ const {
 <label class="label">
   {label}
   <input
-    class=`input ${!isValid && 'input--error'}`
+    class=`input`
     type={type}
     placeholder={placeholder}
     name={name}
+    data-state="valid"
+    data-target="input-element"
     {...props}
   />
+  <span class="label__error" data-target="input-element-error">error</span>
 </label>
 
 <style lang="scss">
@@ -35,6 +37,19 @@ const {
     font-weight: 700;
     line-height: normal;
     letter-spacing: -0.0156rem;
+    position: relative;
+    &__error {
+      color: var(--error);
+      font-size: 0.75rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: -0.0134rem;
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: none;
+    }
   }
   .input {
     width: 100%;
@@ -59,8 +74,23 @@ const {
       border-color: var(--accent);
       caret-color: var(--accent);
     }
-    &--error {
+    &[data-state='error'] {
       border-color: var(--error);
+      & + .label__error {
+        display: block;
+      }
     }
   }
 </style>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const inputs = document.querySelectorAll('[data-target="input-element"]');
+
+    inputs.forEach((input) => {
+      input.addEventListener('input', (event) => {
+        const value = input.value;
+        input.dataset.state = 'valid';
+      });
+    });
+  });
+</script>

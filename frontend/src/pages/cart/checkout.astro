@@ -20,21 +20,18 @@ import CheckoutModal from '@/components/modal/CheckoutModal.astro';
             label="Name"
             type="text"
             placeholder="Alexei Ward"
-            value="Jhon"
           />
           <Input
             name="email"
             label="Email Address"
             type="email"
             placeholder="alexei@mail.com"
-            value="Jhon@test.com"
           />
           <Input
             name="phone"
             label="Phone Number"
             type="tel"
             placeholder="+1 202-555-0136"
-            value="+01 202-555-0136"
           />
         </div>
       </div>
@@ -47,30 +44,16 @@ import CheckoutModal from '@/components/modal/CheckoutModal.astro';
               label="Address"
               type="text"
               placeholder="1137 Williams Avenue"
-              value="1137 Williams Avenue"
             />
           </div>
 
-          <Input
-            name="zip"
-            label="ZIP Code"
-            type="text"
-            placeholder="10001"
-            value="10001"
-          />
-          <Input
-            name="city"
-            label="City"
-            type="text"
-            placeholder="New York"
-            value="New York"
-          />
+          <Input name="zip" label="ZIP Code" type="text" placeholder="10001" />
+          <Input name="city" label="City" type="text" placeholder="New York" />
           <Input
             name="country"
             label="Country"
             type="text"
             placeholder="United States"
-            value="USA"
           />
         </div>
       </div>
@@ -92,14 +75,12 @@ import CheckoutModal from '@/components/modal/CheckoutModal.astro';
             label="e-Money Number"
             type="text"
             placeholder="238521993"
-            value="238521993"
           />
           <Input
             name="emoneyPin"
             label="e-Money PIN"
             type="text"
             placeholder="6891"
-            value="6891"
           />
         </div>
         <div class="billing__section__cash" data-target="cash-form">
@@ -387,30 +368,81 @@ import CheckoutModal from '@/components/modal/CheckoutModal.astro';
       const selectedProduct = cart.map((product) => {
         return { code: product.id, quantity: product.quantity };
       });
-      const data = await checkoutCart(billing, selectedProduct);
 
-      const modal = document.querySelector('[data-target="modal-checkout"]');
-      modal.classList.add('active');
-      const modalProducts = modal.querySelector(
-        '[data-target="modal-checkout-products"]'
-      );
-      const modalPrice = modal.querySelector(
-        '[data-target="modal-checkout-price"]'
-      );
-      const modalItems = modal.querySelector(
-        '[data-target="show-more-items-number"]'
-      );
+      // const modal = document.querySelector('[data-target="modal-checkout"]');
+      // modal.classList.add("active");
+      // const modalProducts = modal.querySelector(
+      //   '[data-target="modal-checkout-products"]',
+      // );
+      // const modalPrice = modal.querySelector(
+      //   '[data-target="modal-checkout-price"]',
+      // );
+      // const modalItems = modal.querySelector(
+      //   '[data-target="show-more-items-number"]',
+      // );
 
-      console.log(data);
-      data.cart.products.forEach((item, index) => {
-        const itemElement = renderItem(item);
-        itemElement.classList.add('show-only-first');
+      // const data = await checkoutCart(billing, selectedProduct);
+      //
+      // console.log(data);
+      // data.cart.products.forEach((item, index) => {
+      //   const itemElement = renderItem(item);
+      //   itemElement.classList.add('show-only-first');
+      //
+      //   itemElement.setAttribute('data-target', 'dynamic-item');
+      //   modalProducts.appendChild(itemElement);
+      // });
+      // modalItems.textContent = (data.cart.products.length - 1).toString();
+      // modalPrice.textContent = `$ ${formatPriceOutput(data.cart.total)}`;
+      console.log({ ...billing, selectedProduct });
+      try {
+        const response = await fetch('http://localhost:3000/api/checkout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ ...billing, cart: selectedProduct }),
+        });
 
-        itemElement.setAttribute('data-target', 'dynamic-item');
-        modalProducts.appendChild(itemElement);
-      });
-      modalItems.textContent = (data.cart.products.length - 1).toString();
-      modalPrice.textContent = `$ ${formatPriceOutput(data.cart.total)}`;
+        const result = await response.json();
+
+        if (response.ok) {
+          const modal = document.querySelector(
+            '[data-target="modal-checkout"]'
+          );
+          modal.classList.add('active');
+          const modalProducts = modal.querySelector(
+            '[data-target="modal-checkout-products"]'
+          );
+          const modalPrice = modal.querySelector(
+            '[data-target="modal-checkout-price"]'
+          );
+          const modalItems = modal.querySelector(
+            '[data-target="show-more-items-number"]'
+          );
+          console.log(result);
+          result.cart.products.forEach((item) => {
+            const itemElement = renderItem(item);
+            itemElement.classList.add('show-only-first');
+
+            itemElement.setAttribute('data-target', 'dynamic-item');
+            modalProducts.appendChild(itemElement);
+          });
+          modalItems.textContent = (result.cart.products.length - 1).toString();
+          modalPrice.textContent = `$ ${formatPriceOutput(result.cart.total)}`;
+        } else {
+          console.error('Checkout failed:', result.errors || result);
+          result.errors.forEach((error) => {
+            const input = form.querySelector(`[name=${error.path[0]}]`);
+            const errorMsj = form.querySelector(
+              `[name=${error.path[0]}] + span`
+            );
+            input.dataset.state = 'error';
+            errorMsj.textContent = error.message;
+          });
+        }
+      } catch (error) {
+        console.error('Error sending data to the API:', error);
+      }
     });
 
   document
