@@ -2,7 +2,7 @@
 import CartBtn from '@components/common/CartBtn.astro';
 ---
 
-<div class="main-padding navbar main-size">
+<div class="main-padding navbar main-size" data-target="navbar">
   <button
     data-action="open-menu"
     class="menu"
@@ -148,7 +148,7 @@ import CartBtn from '@components/common/CartBtn.astro';
   let lastScrollY = window.scrollY;
 
   window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
+    const navbar = document.querySelector('[data-target="navbar"]');
     const currentScrollY = window.scrollY;
 
     if (

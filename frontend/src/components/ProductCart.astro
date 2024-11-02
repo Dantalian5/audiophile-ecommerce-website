@@ -39,7 +39,8 @@ const {
       class="form-cart product-shop__cart"
       data-product-id={productId}
       data-product-nickname={productNickname}
-      data-product-price={price}>
+      data-product-price={price}
+      data-target="product-cart-number-selector">
       <Number />
       <Button label="add to cart" variant="accent" type="submit" />
     </form>
@@ -167,23 +168,25 @@ const {
   import { addToCart } from '@/lib/cartOperations';
   import { formatPriceInput } from '@/lib/utils';
 
-  document.querySelectorAll('.form-cart').forEach((form: HTMLFormElement) => {
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const inputNumber: HTMLInputElement =
-        form.querySelector('input[type=number]');
-      const productId = form.dataset.productId;
-      const productNickname = form.dataset.productNickname;
-      const productPrice = formatPriceInput(form.dataset.productPrice);
-      const productQuantity = parseFloat(inputNumber.value);
+  document
+    .querySelectorAll('form[data-target="product-cart-number-selector"]')
+    .forEach((form: HTMLFormElement) => {
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const inputNumber: HTMLInputElement =
+          form.querySelector('input[type=number]');
+        const productId = form.dataset.productId;
+        const productNickname = form.dataset.productNickname;
+        const productPrice = formatPriceInput(form.dataset.productPrice);
+        const productQuantity = parseFloat(inputNumber.value);
 
-      addToCart({
-        id: productId,
-        code: productId,
-        nickname: productNickname,
-        price: productPrice,
-        quantity: productQuantity,
+        addToCart({
+          id: productId,
+          code: productId,
+          nickname: productNickname,
+          price: productPrice,
+          quantity: productQuantity,
+        });
       });
     });
-  });
 </script>

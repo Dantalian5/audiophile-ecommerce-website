@@ -11,7 +11,7 @@ const {
 } = Astro.props;
 ---
 
-<article class={`product ${direction}`}>
+<article class={`product ${direction}`} data-target="product-section-animation">
   <div class="product__img">
     <picture>
       {imgRef[2] && <source srcset={imgRef[2]} media="(min-width: 75rem)" />}
@@ -164,7 +164,9 @@ const {
 </style>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const targets = document.querySelectorAll('.product');
+    const targets = document.querySelectorAll(
+      '[data-target="product-section-animation"]'
+    );
 
     const observer = new IntersectionObserver(
       (elements) => {

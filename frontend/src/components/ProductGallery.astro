@@ -1,11 +1,5 @@
 ---
-interface imgRefProp {
-  top: string[];
-  bottom: string[];
-  left: string[];
-}
-
-const { imgRef } = Astro.props as { imgRef: imgRefProp };
+const { imgRef, imgAlt } = Astro.props;
 ---
 
 <section class="main-padding secondary-margin-bottom photo-gallery">
@@ -23,7 +17,7 @@ const { imgRef } = Astro.props as { imgRef: imgRefProp };
     <img
       class="photo-gallery__img photo-gallery__top"
       src={imgRef.top[0]}
-      alt={'gallery'}
+      alt={imgAlt.top}
     />
   </picture>
   <picture>
@@ -40,7 +34,7 @@ const { imgRef } = Astro.props as { imgRef: imgRefProp };
     <img
       class="photo-gallery__img photo-gallery__bottom"
       src={imgRef.bottom[0]}
-      alt={'gallery'}
+      alt={imgAlt.bottom}
     />
   </picture>
   <div class="photo-gallery__right">
@@ -55,7 +49,7 @@ const { imgRef } = Astro.props as { imgRef: imgRefProp };
           <source srcset={imgRef.left[1]} media="(min-width: 43.75rem)" />
         )
       }
-      <img class="photo-gallery__img" src={imgRef.left[0]} alt={'gallery'} />
+      <img class="photo-gallery__img" src={imgRef.left[0]} alt={imgAlt.left} />
     </picture>
   </div>
 </section>

@@ -9,8 +9,10 @@ import { formatPriceOutput } from "@lib/utils";
 
 export function updateModalContent() {
   const cart = getCartFromLocalStorage();
-  const modalCart = document.querySelector('[data-modal="cart"]');
-  const productContainer = modalCart.querySelector('[data-cart="products"]');
+  const modalCart = document.querySelector('[data-target="modal-cart"]');
+  const productContainer = modalCart.querySelector(
+    '[data-target="modal-cart-products"]'
+  );
 
   productContainer.innerHTML = "";
 
@@ -83,9 +85,9 @@ export function renderItem(item, editable = false) {
   itemElement.classList.add("cart-item");
   itemElement.innerHTML = `
   <div class="cart-item__img">
-    <img src="/assets/cart/image-${
+    <img src="/assets/products/${
       item.id || item.code
-    }-headphones.jpg" alt="product image" />
+    }/image-cart.jpg" alt="product image" />
   </div>
   <div class="cart-item__specs">
     <h3 class="cart-item__title">

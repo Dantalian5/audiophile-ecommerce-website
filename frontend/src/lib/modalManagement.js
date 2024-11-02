@@ -1,8 +1,10 @@
 import { updateModalContent } from "./cartUI";
 
 export function openModalCart() {
-  const modalCart = document.querySelector('[data-modal="cart"]');
-  const modalWrapper = document.querySelector(".modal-cart__wrapper");
+  const modalCart = document.querySelector('[data-target="modal-cart"]');
+  const modalWrapper = modalCart.querySelector(
+    '[data-target="modal-cart-wrapper"]'
+  );
 
   updateModalContent();
   modalCart.classList.add("active");
@@ -13,7 +15,7 @@ export function openModalCart() {
 }
 
 export function closeModalCart() {
-  const modalCart = document.querySelector('[data-modal="cart"]');
+  const modalCart = document.querySelector('[data-target="modal-cart"]');
 
   modalCart.classList.remove("active");
 
@@ -21,7 +23,7 @@ export function closeModalCart() {
 }
 
 export function toggleModalCart() {
-  const modalCart = document.querySelector('[data-modal="cart"]');
+  const modalCart = document.querySelector('[data-target="modal-cart"]');
 
   if (modalCart.classList.contains("active")) {
     closeModalCart();

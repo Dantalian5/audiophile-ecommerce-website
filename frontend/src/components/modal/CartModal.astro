@@ -2,8 +2,10 @@
 import Button from '@components/common/Button.astro';
 ---
 
-<div class="modal-cart modal main-padding" data-modal="cart">
-  <div class="modal__wrapper modal__wrapper--topright modal-cart__wrapper">
+<div class="modal-cart modal main-padding" data-target="modal-cart">
+  <div
+    class="modal__wrapper modal__wrapper--topright modal-cart__wrapper"
+    data-target="modal-cart-wrapper">
     <div class="modal-cart__top">
       <p class="modal-cart__info">
         cart (<span data-target="cart-total-quantity">0</span>)
@@ -15,7 +17,7 @@ import Button from '@components/common/Button.astro';
         Remove all
       </button>
     </div>
-    <div class="modal-cart__products" data-cart="products"></div>
+    <div class="modal-cart__products" data-target="modal-cart-products"></div>
     <div class="modal-cart__total">
       <p class="modal-cart__total__text">total</p>
       <p class="modal-cart__total__value">

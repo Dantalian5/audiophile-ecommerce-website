@@ -3,7 +3,12 @@ const { size = 'lg' } = Astro.props as { size: 'sm' | 'lg' };
 ---
 
 <div class={`${size} number`}>
-  <button type="button" class="number__btn minus-button">-</button>
+  <button
+    type="button"
+    class="number__btn minus-button"
+    data-target="btn-input-number-minus">
+    -
+  </button>
   <input
     id="inputNumber"
     class="number__input"
@@ -12,7 +17,12 @@ const { size = 'lg' } = Astro.props as { size: 'sm' | 'lg' };
     min="1"
     step="1"
   />
-  <button type="button" class="number__btn plus-button">+</button>
+  <button
+    type="button"
+    class="number__btn plus-button"
+    data-target="btn-input-number-plus">
+    +
+  </button>
 </div>
 <style lang="scss">
   .number {
@@ -79,16 +89,20 @@ const { size = 'lg' } = Astro.props as { size: 'sm' | 'lg' };
   }
 </style>
 <script>
-  document.querySelectorAll('.minus-button').forEach((button) => {
-    button.addEventListener('click', () => {
-      const input = button.nextElementSibling as HTMLInputElement;
-      input.stepDown();
+  document
+    .querySelectorAll('button[data-target="btn-input-number-minus"]')
+    .forEach((button) => {
+      button.addEventListener('click', () => {
+        const input = button.nextElementSibling as HTMLInputElement;
+        input.stepDown();
+      });
     });
-  });
-  document.querySelectorAll('.plus-button').forEach((button) => {
-    button.addEventListener('click', () => {
-      const input = button.previousElementSibling as HTMLInputElement;
-      input.stepUp();
+  document
+    .querySelectorAll('button[data-target="btn-input-number-plus"]')
+    .forEach((button) => {
+      button.addEventListener('click', () => {
+        const input = button.previousElementSibling as HTMLInputElement;
+        input.stepUp();
+      });
     });
-  });
 </script>
