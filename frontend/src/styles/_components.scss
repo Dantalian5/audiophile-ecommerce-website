@@ -130,9 +130,6 @@
   overflow: scroll;
   top: 0;
   left: 0;
-  &.active {
-    display: flex;
-  }
   &::before {
     content: "";
     z-index: -1;
@@ -150,5 +147,8 @@
     &--topright {
       margin-left: auto;
     }
+  }
+  &.active {
+    display: flex;
   }
 }
