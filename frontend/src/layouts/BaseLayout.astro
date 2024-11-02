@@ -19,10 +19,61 @@ const { title } = Astro.props;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="MyWebSite" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://audiophile.valenzuela.dev/" />
+    <meta property="og:title" content="Audiophile - Premium Audio Devices" />
+    <meta
+      property="og:description"
+      content="Discover our selection of high-quality headphones, earphones, and speakers designed for the ultimate music experience. Audiophile: the way music is meant to be heard."
+    />
+    <meta
+      property="og:image"
+      content="https://audiophile.valenzuela.dev/assets/og-image.png"
+    />
+    <meta
+      property="og:image:alt"
+      content="Audiophile - High-quality audio devices"
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://audiophile.valenzuela.dev/" />
+    <meta name="twitter:title" content="Audiophile - Premium Audio Devices" />
+    <meta
+      name="twitter:description"
+      content="Experience the best in audio with high-quality headphones, earphones, and speakers. Live your music the way it deserves with Audiophile."
+    />
+    <meta
+      name="twitter:image"
+      content="https://audiophile.valenzuela.dev/assets/og-image.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Audiophile - High-quality audio devices"
+    />
+    <!-- General Meta Tags -->
+    <meta
+      name="description"
+      content="Explore premium audio devices designed for true music lovers. Discover a wide range of headphones, earphones, and speakers at Audiophile."
+    />
+    <meta
+      name="keywords"
+      content="audiophile, headphones, earphones, speakers, premium audio, music, audio devices"
+    />
+    <meta name="author" content="MV" />
     <title>{title}</title>
   </head>
   <body class="body">
