@@ -106,7 +106,7 @@ export function renderItem(item, editable = false) {
             class="input-number__input"
             type="number"
             value="${item.quantity}"
-            min="0"
+            min="1"
             max="999"
             step="1"
           />

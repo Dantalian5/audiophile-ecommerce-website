@@ -11,14 +11,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/Dantalian5/audiophile-ecommerce-website">
-    <img src="../images/icon.png" alt="Logo" width="80" height="80">
+    <img src="images/icon.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Audiophile</h3>
 
   <p align="center">
-This is the frontend of the Audiophile eCommerce project, built to provide a smooth and responsive user experience for browsing and purchasing high-quality audio equipment.
-
+ Audiophile is a full-stack eCommerce web app specializing in high-end audio devices, including earphones, speakers, and headphones. This project was developed by MV, based on a design provided by <a href="https://www.frontendmentor.io/">Frontend Mentor</a>. The application offers a seamless experience for browsing and purchasing premium audio equipment.
 <br />
 <a href="https://github.com/Dantalian5/audiophile-ecommerce-website"><strong>Explore the docs »</strong></a>
 <br />
@@ -64,29 +63,47 @@ This is the frontend of the Audiophile eCommerce project, built to provide a smo
 
 [![Product Name Screen Shot][product-screenshot]](http://audiophile.valenzuela.dev)
 
-- **Category and Product Pages**: Users can navigate through various product categories and view detailed product information.
-- **Cart Management**: Users can add products to the cart, adjust quantities, and view a summary of their items.
-- **Cart Validation**: Before proceeding to checkout, the application ensures that all items in the cart are valid.
-- **Checkout Process**: During checkout, the frontend collects and validates billing information before passing it to the backend for final processing.
+This project is structured into two main parts: the frontend and the backend.
+
+The **frontend** is developed as static pages using the Astro framework, with a largely vanilla JavaScript approach for functionality. Special attention was given to features, responsiveness, and action handling to ensure an optimal user experience.
+
+The **backend** consists of a RESTful API that allows for fetching products, validating the shopping cart, and handling checkout and billing information. For this demonstration project, products are stored in a server variable, as a database is not required for basic functionality. However, the setup is designed to allow easy integration with a database if needed. Additionally, the API follows standard patterns, making it straightforward to add and configure payment gateways like Stripe in the server-side logic.
+
+This project includes Docker and Docker Compose configurations, making it easy to set up and run the application in a containerized environment.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
 
-- [![Astro][Astro.build]][Astro-url]
-- scss
-- javascript
-- vitest
+**Frontend**
 
+- [![Astro][Astro.build]][Astro-url]
+
+**Backend**
+
+- [![Node][Nodejs.org]][Nodejs-url]
+- [![Express][Expressjs.com]][Expressjs-url]
+
+**Testing**
+
+- [![Jest][Jest.com]][Jest-url]
+- Vitest
+
+**Hosting**
+
+- Docker/Docker-compose
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 
 ## Getting Started
 
+For detailed instructions on how to use the development files for both the frontend and backend, please refer to the README files located in their respective folders.
+
 ### Prerequisites
 
-- nodejs
+- docker
+- docker-compose
 
 ### Installation & hosting
 
@@ -94,9 +111,15 @@ This is the frontend of the Audiophile eCommerce project, built to provide a smo
    ```sh
    git clone https://github.com/Dantalian5/audiophile-ecommerce-website.git
    ```
-2. Run development server
+2. Configure environment variables
    ```sh
-   npm run dev
+   # .env
+    API_URL=https://localhost/api/
+    PORT=4000
+   ```
+3. Use Docker compose to mount the project
+   ```sh
+   docker-compose --env-file .env up -d
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -105,7 +128,9 @@ This is the frontend of the Audiophile eCommerce project, built to provide a smo
 
 ## Usage
 
-Navigate through a fully functional eCommerce platform.
+The site allows users to navigate through category and product pages, add products to the cart, manage the cart, and validate the cart contents. If a product ID is incorrect or invalid, the purchase will not proceed. During checkout, the application validates the billing information to ensure all required details are provided.
+
+The API enables retrieval of products, either by ID or by category. It also handles cart validation and billing information verification, ensuring that all purchase logic is securely processed on the server.
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
@@ -115,14 +140,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 ## Roadmap
 
-- [x] Implement Astro as the framework
-- [x] Create home page
-- [x] Create category pages
-- [x] Create products pages
-- [x] Create checkout page
-- [x] Implement cart & billing validation using the api
-- [x] Add animations, & optimizations
-- [x] Add unitary & integration tests to critical components
+- [x] Create Frontend
+- [x] Create backend
+- [x] Create hosting configuration
 
 See the [open issues](https://github.com/Dantalian5/audiophile-ecommerce-website/issues) for a full list of proposed features (and known issues).
 
@@ -190,7 +210,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [license-url]: https://github.com/Dantalian5/audiophile-ecommerce-website/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/marcos-valenzuela-dev
-[product-screenshot]: ../images/screenshot.png
+[product-screenshot]: images/screenshot.png
 
 <!-- Tech Stack Badges -->
 

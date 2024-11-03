@@ -53,5 +53,6 @@ next-env.d.ts
 
 # Avoid your project being littered with annoying .DS_Store files!
 .prettierignore
+docker-compose.yml
 
 

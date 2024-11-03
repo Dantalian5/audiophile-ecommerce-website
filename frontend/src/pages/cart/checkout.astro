@@ -374,13 +374,16 @@ import CheckoutModal from '@/components/modal/CheckoutModal.astro';
       });
       console.log({ ...billing, selectedProduct });
       try {
-        const response = await fetch('http://localhost:3000/api/checkout', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ ...billing, cart: selectedProduct }),
-        });
+        const response = await fetch(
+          `${import.meta.env.PUBLIC_API_URL}/checkout`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ ...billing, cart: selectedProduct }),
+          }
+        );
 
         const result = await response.json();
 

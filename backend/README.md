@@ -14,11 +14,10 @@
     <img src="../images/icon.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Audiophile</h3>
+<h3 align="center">Audiophile | API</h3>
 
   <p align="center">
-This is the frontend of the Audiophile eCommerce project, built to provide a smooth and responsive user experience for browsing and purchasing high-quality audio equipment.
-
+ This is the backend of the Audiophile eCommerce project, providing a RESTful API for managing products, cart validation, and checkout processes.
 <br />
 <a href="https://github.com/Dantalian5/audiophile-ecommerce-website"><strong>Explore the docs »</strong></a>
 <br />
@@ -62,21 +61,20 @@ This is the frontend of the Audiophile eCommerce project, built to provide a smo
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](http://audiophile.valenzuela.dev)
-
-- **Category and Product Pages**: Users can navigate through various product categories and view detailed product information.
-- **Cart Management**: Users can add products to the cart, adjust quantities, and view a summary of their items.
-- **Cart Validation**: Before proceeding to checkout, the application ensures that all items in the cart are valid.
-- **Checkout Process**: During checkout, the frontend collects and validates billing information before passing it to the backend for final processing.
+- **Product Retrieval**: Fetch a list of all products, retrieve a single product by ID, or filter products by category.
+- **Cart Validation**: Validate cart items to ensure each product's ID is correct. If an invalid product is detected, the purchase will not proceed.
+- **Checkout Validation**: Verify billing information during checkout to ensure secure and complete transactions.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
 
-- [![Astro][Astro.build]][Astro-url]
-- scss
-- javascript
-- vitest
+- [![Node][Nodejs.org]][Nodejs-url]
+- [![Express][Expressjs.com]][Expressjs-url]
+
+**Testing**
+
+- [![Jest][Jest.com]][Jest-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -105,7 +103,11 @@ This is the frontend of the Audiophile eCommerce project, built to provide a smo
 
 ## Usage
 
-Navigate through a fully functional eCommerce platform.
+### API Endpoints
+
+- **GET /api/products**: Returns a list of all products. You can filter products by category using a query parameter, e.g., `GET /api/products?category=headphones`.
+- **POST /api/cart**: Validates the contents of the cart to ensure all product IDs are correct. If an invalid product is detected, the purchase will not proceed.
+- **POST /api/checkout**: Validates both the cart and billing information to ensure a secure and complete checkout process.
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
@@ -115,14 +117,10 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 ## Roadmap
 
-- [x] Implement Astro as the framework
-- [x] Create home page
-- [x] Create category pages
-- [x] Create products pages
-- [x] Create checkout page
-- [x] Implement cart & billing validation using the api
-- [x] Add animations, & optimizations
-- [x] Add unitary & integration tests to critical components
+- [x] Implement the routes
+- [x] Implement the Controllers
+- [x] Add zod validation
+- [x] Add unitary & integration tests
 
 See the [open issues](https://github.com/Dantalian5/audiophile-ecommerce-website/issues) for a full list of proposed features (and known issues).
 
@@ -190,7 +188,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [license-url]: https://github.com/Dantalian5/audiophile-ecommerce-website/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/marcos-valenzuela-dev
-[product-screenshot]: ../images/screenshot.png
+[product-screenshot]: images/screenshot.png
 
 <!-- Tech Stack Badges -->
 

@@ -23,7 +23,7 @@ import CartBtn from '@components/common/CartBtn.astro';
       </path>
     </svg>
   </a>
-  <nav data-navigation="menu" class="navbar__navigation">
+  <nav data-target="navbar-menu" class="navbar__navigation">
     <a href="/" class="navbar__link">Home</a>
     <a href="/category/headphones" class="navbar__link">Headphones</a>
     <a href="/category/speakers" class="navbar__link">Speakers</a>
@@ -139,10 +139,19 @@ import CartBtn from '@components/common/CartBtn.astro';
 </style>
 <script>
   const menuButton = document.querySelector('[data-action="open-menu"]');
-  const navigationMenu = document.querySelector('[data-navigation="menu"]');
+  const navigationMenu = document.querySelector('[data-target="navbar-menu"]');
 
   menuButton.addEventListener('click', () => {
+    event.stopPropagation();
     navigationMenu.classList.toggle('active');
+  });
+  document.addEventListener('click', (event) => {
+    if (
+      !navigationMenu.contains(event.target) &&
+      !menuButton.contains(event.target)
+    ) {
+      navigationMenu.classList.remove('active');
+    }
   });
 
   let lastScrollY = window.scrollY;

@@ -1,6 +1,6 @@
 export async function validateCart(cart) {
   try {
-    const response = await fetch("http://localhost:3000/api/cart", {
+    const response = await fetch(`${import.meta.env.PUBLIC_API_URL}/cart`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export async function validateCart(cart) {
 
 export async function checkoutCart(billing, cart) {
   try {
-    const response = await fetch("http://localhost:3000/api/checkout", {
+    const response = await fetch(`${import.meta.env.PUBLIC_API_URL}/checkout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
