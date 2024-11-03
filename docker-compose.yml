@@ -1,0 +1,27 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    networks:
+      - proxy-network
+    environment:
+      - API_URL=${API_URL}
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - '3030:${PORT}'
+    networks:
+      - proxy-network
+    environment:
+      - NODE_ENV=production
+      - PORT=${PORT}
+
+networks:
+  proxy-network:
+    external: true
