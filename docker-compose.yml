@@ -1,16 +1,16 @@
 services:
   frontend:
-    build:
+  container_name: audiophile_frontend 
+    build:    
       context: ./frontend
       dockerfile: Dockerfile
     ports:
       - '3000:3000'
     networks:
       - proxy-network
-    environment:
-      - PUBLIC_API_URL=${API_URL}
 
   backend:
+  container_name: audiophile_backend 
     build:
       context: ./backend
       dockerfile: Dockerfile
