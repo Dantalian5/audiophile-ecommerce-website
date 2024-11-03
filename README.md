@@ -10,7 +10,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Dantalian5/audiophile-ecommerce-website">
+  <a href="https://audiophile.valenzuela.dev/">
     <img src="images/icon.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -22,7 +22,7 @@
 <a href="https://github.com/Dantalian5/audiophile-ecommerce-website"><strong>Explore the docs »</strong></a>
 <br />
 <br />
-<a href="https://github.com/Dantalian5/audiophile-ecommerce-website">View Demo</a>
+<a href="https://audiophile.valenzuela.dev/">View Demo</a>
 ·
 <a href="https://github.com/Dantalian5/audiophile-ecommerce-website/issues">Report Bug</a>
 ·
@@ -61,7 +61,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](http://audiophile.valenzuela.dev)
+[![Product Name Screen Shot][product-screenshot]](https://audiophile.valenzuela.dev/)
 
 This project is structured into two main parts: the frontend and the backend.
 
