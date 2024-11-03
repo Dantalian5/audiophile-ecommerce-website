@@ -38,8 +38,8 @@ describe('Test processCheckout', () => {
         emoneyNumber: '12345678',
         emoneyPin: '1234',
         cart: [
-          { code: 'xx99-mark-two', quantity: 2 },
-          { code: 'zx9', quantity: 1 },
+          { code: 'xx99-mark-two-headphones', quantity: 2 },
+          { code: 'zx9-speaker', quantity: 1 },
         ],
       });
 
@@ -74,7 +74,7 @@ describe('Test processCheckout', () => {
     expect(response.status).toBe(400);
     expect(response.body.errors).toBeDefined();
     expect(response.body.errors[0].message).toBe('Name is required');
-    expect(response.body.errors[1].message).toBe('Email must be valid');
+    expect(response.body.errors[1].message).toBe('Wrong Format');
   });
 
   it('should return a 500 error if an unexpected server error occurs', async () => {

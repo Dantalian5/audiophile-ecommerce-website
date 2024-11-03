@@ -1,7 +1,16 @@
 import products from '../models/products.js';
 
 export const getAllProducts = (req, res) => {
-  res.json(products);
+  const { category } = req.query;
+
+  if (category) {
+    const filteredProducts = products.filter(
+      (product) => product.category === category
+    );
+    res.json(filteredProducts);
+  } else {
+    res.json(products);
+  }
 };
 
 export const getProductByCode = (req, res) => {

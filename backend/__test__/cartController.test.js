@@ -26,8 +26,8 @@ describe('Test cartController', () => {
       .post('/api/cart')
       .send({
         cart: [
-          { code: 'xx99-mark-two', quantity: 2 },
-          { code: 'zx9', quantity: 1 },
+          { code: 'xx99-mark-two-headphones', quantity: 2 },
+          { code: 'zx9-speaker', quantity: 1 },
         ],
       });
     expect(response.statusCode).toBe(200);
@@ -65,7 +65,7 @@ describe('Test cartController', () => {
     expect(response.body.errors[0].path).toEqual([0, 'quantity']);
   });
   it('should return a 500 error if an unexpected server error occurs', async () => {
-    const validCart = [{ code: 'xx99-mark-two', quantity: 2 }];
+    const validCart = [{ code: 'xx99-mark-two-headphones', quantity: 2 }];
 
     createCart.mockImplementation(() => {
       throw new Error('Simulated server error');
