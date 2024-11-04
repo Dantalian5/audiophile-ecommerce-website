@@ -355,9 +355,7 @@ import CheckoutModal from '@/components/modal/CheckoutModal.astro';
   document
     .querySelector('[data-action="submit-checkout"]')
     .addEventListener('click', () => {
-      document
-        .getElementById('checkout-form')
-        .dispatchEvent(new Event('submit'));
+      document.getElementById('checkout-form').requestSubmit();
     });
 
   document
@@ -374,16 +372,14 @@ import CheckoutModal from '@/components/modal/CheckoutModal.astro';
       });
       console.log({ ...billing, selectedProduct });
       try {
-        const response = await fetch(
-          `${import.meta.env.PUBLIC_API_URL}/checkout`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ ...billing, cart: selectedProduct }),
-          }
-        );
+        const baseURL = import.meta.env.PUBLIC_API_URL.replace(/\/+$/, '');
+        const response = await fetch(`${baseURL}/checkout`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ ...billing, cart: selectedProduct }),
+        });
 
         const result = await response.json();
 

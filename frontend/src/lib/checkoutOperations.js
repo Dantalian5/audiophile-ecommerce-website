@@ -1,6 +1,7 @@
 export async function validateCart(cart) {
   try {
-    const response = await fetch(`${import.meta.env.PUBLIC_API_URL}/cart`, {
+    const baseURL = import.meta.env.PUBLIC_API_URL.replace(/\/+$/, "");
+    const response = await fetch(`${baseURL}/cart`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,7 +23,8 @@ export async function validateCart(cart) {
 
 export async function checkoutCart(billing, cart) {
   try {
-    const response = await fetch(`${import.meta.env.PUBLIC_API_URL}/checkout`, {
+    const baseURL = import.meta.env.PUBLIC_API_URL.replace(/\/+$/, "");
+    const response = await fetch(`${baseURL}/checkout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
