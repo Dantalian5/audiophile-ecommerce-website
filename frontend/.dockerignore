@@ -4,4 +4,4 @@ dist
 .git
 .gitignore
 Dockerfile
-nginx.conf
+Readme.md

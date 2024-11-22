@@ -8,4 +8,4 @@ RUN npm run build
 FROM nginx:alpine AS prod
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/dist /usr/share/nginx/html
-EXPOSE 3000
+EXPOSE 8080
